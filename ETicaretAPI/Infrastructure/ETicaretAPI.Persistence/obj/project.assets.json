@@ -80,8 +80,8 @@
     },
     "ETicaretAPI.Domain/1.0.0": {
       "type": "project",
-      "path": "../../../Core/ETicaretAPI.Domain/ETicaretAPI.Domain.csproj",
-      "msbuildProject": "../../../Core/ETicaretAPI.Domain/ETicaretAPI.Domain.csproj"
+      "path": "../../Core/ETicaretAPI.Domain/ETicaretAPI.Domain.csproj",
+      "msbuildProject": "../../Core/ETicaretAPI.Domain/ETicaretAPI.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
