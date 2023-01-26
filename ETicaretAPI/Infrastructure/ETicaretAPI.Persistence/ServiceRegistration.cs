@@ -19,13 +19,13 @@ namespace ETicaretAPI.Persistence
             services.AddDbContext<ETicaretAPIDbContext>(opt =>
             {
                 opt.UseMySQL(Configuration.ConnectionString);
-            }, ServiceLifetime.Singleton);
-            services.AddSingleton<ICustomerCommandRepository, CustomerCommandRepository>();
-            services.AddSingleton<ICustomerQueryRepository, CustomerQueryRepository>();
-            services.AddSingleton<IOrderCommandRepository, OrderCommandRepository>();
-            services.AddSingleton<IOrderQueryRepository, OrderQueryRepository>();
-            services.AddSingleton<IProductCommandRepository, ProductCommandRepository>();
-            services.AddSingleton<IProductQueryRepository, ProductQueryRepository>();
+            });
+            services.AddScoped<ICustomerCommandRepository, CustomerCommandRepository>();
+            services.AddScoped<ICustomerQueryRepository, CustomerQueryRepository>();
+            services.AddScoped<IOrderCommandRepository, OrderCommandRepository>();
+            services.AddScoped<IOrderQueryRepository, OrderQueryRepository>();
+            services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
+            services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
         }
     }
 }
