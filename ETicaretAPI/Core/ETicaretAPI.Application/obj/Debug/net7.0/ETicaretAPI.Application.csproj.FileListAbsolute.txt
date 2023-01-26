@@ -1,0 +1,15 @@
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.deps.json
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.dll
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.pdb
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Domain.dll
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Domain.pdb
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.AssemblyReference.cache
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.AssemblyInfoInputs.cache
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.AssemblyInfo.cs
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.CoreCompileInputs.cache
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.CopyComplete
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.dll
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\refint\ETicaretAPI.Application.dll
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.pdb
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ref\ETicaretAPI.Application.dll
