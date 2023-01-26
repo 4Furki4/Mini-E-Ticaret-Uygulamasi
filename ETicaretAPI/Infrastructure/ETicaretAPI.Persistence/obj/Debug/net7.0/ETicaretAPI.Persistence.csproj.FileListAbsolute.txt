@@ -15,3 +15,5 @@ C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygula
 C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Infrastructure\ETicaretAPI.Persistence\obj\Debug\net7.0\refint\ETicaretAPI.Persistence.dll
 C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Infrastructure\ETicaretAPI.Persistence\obj\Debug\net7.0\ETicaretAPI.Persistence.pdb
 C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Infrastructure\ETicaretAPI.Persistence\obj\Debug\net7.0\ref\ETicaretAPI.Persistence.dll
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Infrastructure\ETicaretAPI.Persistence\bin\Debug\net7.0\ETicaretAPI.Persistence.runtimeconfig.json
+C:\Users\Furkan Cengiz\OneDrive\Masaüstü\Yazılım\repo\4Furki4\ETicaretUygulaması\ETicaretAPI\Infrastructure\ETicaretAPI.Persistence\obj\Debug\net7.0\ETicaretAPI.Persistence.genruntimeconfig.cache
