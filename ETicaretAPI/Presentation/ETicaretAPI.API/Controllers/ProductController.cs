@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,23 +10,26 @@ namespace ETicaretAPI.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductCommandRepository productCommand;
-        public ProductController(IProductCommandRepository productCommand)
+        private readonly IProductQueryRepository productQuery;
+        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
         {
             this.productCommand = productCommand;
+            this.productQuery = productQuery;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            await productCommand.AddAsync(new()
-            {
-                Id = Guid.NewGuid(),
-                Created = DateTime.Now,
-                Name = "Test",
-                Price = 31,
-                Stock = 31
-            });
+            var product = productQuery.GetAll();
+            return Ok(product);
+        }
+        [HttpGet("id")]
+        public async Task GetById(string id)
+        {
+            Product product = await productQuery.GetByIdAsync(id, false);
+
+            product.Name = "Furkan";
+
             await productCommand.SaveAsync();
-            return Ok();
         }
     }
 }

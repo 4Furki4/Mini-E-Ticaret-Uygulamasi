@@ -10,12 +10,12 @@ namespace ETicaretAPI.Application.Repositories
 {
     public interface IQueryRepository<T> : IRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(bool isTracked = true);
 
-        IQueryable<T> GetWhere(Expression<Func<T,bool>> expression);
+        IQueryable<T> GetWhere(Expression<Func<T,bool>> expression, bool isTracked = true);
 
-        Task<T> GetSingleAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, bool isTracked = true);
 
-        Task<T> GetByIdAsync(string id);
+        Task<T> GetByIdAsync(string id, bool isTracked = true);
     }
 }

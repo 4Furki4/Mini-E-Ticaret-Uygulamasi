@@ -22,15 +22,35 @@ namespace ETicaretAPI.Application.Repositories
             context.Set<T>();
 
 
-        public IQueryable<T> GetAll() => Table;
+        public IQueryable<T> GetAll(bool isTracked = true)
+        {
+            var query = Table.AsQueryable();
+            query = isTracked == true ? query : query.AsNoTracking();
+            return query;
+        }
 
         
 
-        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression) =>
-            await Table.FirstOrDefaultAsync(expression);
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, bool isTracked = true)
+        {
+            var query = Table.AsQueryable();
+            query = isTracked == true ? query : query.AsNoTracking();
+            return await query.FirstOrDefaultAsync(expression);
+        }
+            
 
-        public IQueryable<T> GetWhere(Expression<Func<T, bool>> expression) => Table.Where(expression);
-        public async Task<T> GetByIdAsync(string id) =>
-            await Table.FirstOrDefaultAsync(b => b.Id == Guid.Parse(id));
+        public IQueryable<T> GetWhere(Expression<Func<T, bool>> expression, bool isTracked = true)
+        {
+            var query = Table.Where(expression);
+            query = isTracked == true ? query : query.AsNoTracking();
+            return query;
+        }
+        public async Task<T> GetByIdAsync(string id, bool isTracked = true)
+        {
+            var query = Table.AsQueryable();
+            query = isTracked == true ? query : query.AsNoTracking();
+            return await query.FirstOrDefaultAsync(b => b.Id == Guid.Parse(id));
+        }
+            
     }
 }
