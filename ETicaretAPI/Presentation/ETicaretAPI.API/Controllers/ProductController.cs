@@ -11,25 +11,62 @@ namespace ETicaretAPI.API.Controllers
     {
         private readonly IProductCommandRepository productCommand;
         private readonly IProductQueryRepository productQuery;
-        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
+        private readonly ICustomerCommandRepository customerCommand;
+        private readonly ICustomerQueryRepository customerQuery;
+        private readonly IOrderCommandRepository orderCommand;
+        private readonly IOrderQueryRepository orderQuery;
+        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, ICustomerCommandRepository customerCommand, ICustomerQueryRepository customerQuery, IOrderCommandRepository orderCommand, IOrderQueryRepository orderQuery)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
+            this.customerCommand = customerCommand;
+            this.customerQuery = customerQuery;
+            this.orderCommand = orderCommand;
+            this.orderQuery = orderQuery;
         }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
+            bool productHasItems = productQuery.GetAll().Any();
+            if (!productHasItems)
+            {
+                await productCommand.AddAsync(new()
+                {
+                    Name = "Silgi",
+                    Price = 15,
+                    Stock = 1000,
+                    Id = Guid.NewGuid(),
+                    CreatedDate = DateTime.UtcNow
+                });
+                await productCommand.SaveAsync();
+            }
+            var customerId = Guid.NewGuid();
+            await customerCommand.AddAsync(new()
+            {
+                Name = "Furkan",
+                Id = customerId
+            });
+            await orderCommand.AddAsync(new()
+            {
+                Address = "Çekmeköy İstanbul",
+                Description = "sipariş test",
+                Id = Guid.NewGuid(),
+                CustomerId = customerId
+            });
+            await productCommand.SaveAsync();
             var product = productQuery.GetAll();
             return Ok(product);
         }
         [HttpGet("id")]
         public async Task GetById(string id)
         {
-            Product product = await productQuery.GetByIdAsync(id, false);
+            Customer customer= await customerQuery.GetByIdAsync(id);
 
-            product.Name = "Furkan";
+            customer.Name = "Meltem";
 
             await productCommand.SaveAsync();
         }
+
+
     }
 }

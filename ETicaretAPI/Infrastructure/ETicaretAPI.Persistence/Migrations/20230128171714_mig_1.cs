@@ -20,7 +20,7 @@ namespace ETicaretAPI.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,7 @@ namespace ETicaretAPI.Persistence.Migrations
                     Name = table.Column<string>(type: "longtext", nullable: false),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<long>(type: "bigint", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace ETicaretAPI.Persistence.Migrations
                     Address = table.Column<string>(type: "longtext", nullable: false),
                     Description = table.Column<string>(type: "longtext", nullable: false),
                     CustomerId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
