@@ -8,3 +8,8 @@ import { Component } from '@angular/core';
 export class LayoutComponent {
 
 }
+declare var $: any;
+declare var alertify: any;
+$(document).ready(() => {
+  alertify.success("You've done it !")
+})
