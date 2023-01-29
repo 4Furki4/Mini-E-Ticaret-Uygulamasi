@@ -1,6 +1,15 @@
-<ul>
-    <li><a routerLink="/admin">Admin</a></li>
-    <li><a routerLink="customers">customers</a></li>
-    <li><a routerLink="orders">orders</a></li>
-    <li><a routerLink="products">products</a></li>
-</ul>
+<mat-list role="list">
+    <mat-list-item role="listitem">
+        <button class="btn-conf" mat-stroked-button routerLink="/admin" color="primary">Dashboard</button>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <button class="btn-conf" mat-stroked-button routerLink="products" color="primary">Products</button>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <button class="btn-conf" mat-stroked-button routerLink="orders" color="primary">Orders</button>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <button class="btn-conf" mat-stroked-button routerLink="customers" color="primary">Customers</button>
+    </mat-list-item>
+
+</mat-list>
