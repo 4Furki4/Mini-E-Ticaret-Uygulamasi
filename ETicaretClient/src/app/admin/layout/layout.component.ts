@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertifyService, AlertType } from 'src/app/services/admin/alertify/alertify.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,7 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+  constructor(private alertify: AlertifyService) {
+    alertify.message("Hoş geldiniz sayın yönetici!", AlertType.Notify)
+  }
 }
-declare var $: any;
-declare var alertify: any;
-$(document).ready(() => {
-  alertify.success("You've done it !")
-})
