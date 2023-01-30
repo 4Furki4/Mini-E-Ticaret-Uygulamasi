@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { ComponentsModule } from './components/components.module';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     CommonModule,
     ComponentsModule,
     RouterModule,
-    MatSidenavModule
+    MatSidenavModule,
+    NgxSpinnerModule
   ],
   exports: [
     LayoutComponent
