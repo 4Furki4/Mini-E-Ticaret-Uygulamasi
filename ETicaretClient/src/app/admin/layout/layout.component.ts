@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
     this.spinner.show();
 
     setTimeout(() => {
-      this.spinner.hide();
-    }, 4000);
+      this.spinner.hide()
+    }, 1000)
   }
 }

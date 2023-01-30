@@ -18,7 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppRoutingModule,
     AdminModule, UiModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
