@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lizln9ZANpR8/wA0Vbq/9OC/EOZmsetNra3Y+lpa53mEIi0Ly4tLqg0yLK9xaGHO2rogU7JRO2oq2WB25rMlng==",
+  "dgSpecHash": "NEtYGv4mxP6GYK/KkvkwnvjPoojJbY3I/jdn2D89Zw7ZH7OKRAyrpnXv3MMYXOXHviMKg71QNy3WFfSnvptRBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Furkan Cengiz\\OneDrive\\Masaüstü\\Yazılım\\repo\\4Furki4\\ETicaretUygulaması\\ETicaretAPI\\Infrastructure\\ETicaretAPI.Persistence\\ETicaretAPI.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Infrastructure\\ETicaretAPI.Persistence\\ETicaretAPI.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",

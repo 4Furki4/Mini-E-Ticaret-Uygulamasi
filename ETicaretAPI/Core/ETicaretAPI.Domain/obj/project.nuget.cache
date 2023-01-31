@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3BhYRlMMFZWQjXck/KABb/vJH/kv5r9EVo4GF7/knnrs9P+nU4db9mn0MAS0Xph7p2MVMFOxo+WB3uivcB4QxA==",
+  "dgSpecHash": "Vv744aW6mqzXxwMKndcUoCE7bgFLhWPzkF+6gp29D6+/lRR4Wd+FRE6SAq50raAuMI3QurtQ59435R8W6nYzrQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Furkan Cengiz\\OneDrive\\Masaüstü\\Yazılım\\repo\\4Furki4\\ETicaretUygulaması\\ETicaretAPI\\Core\\ETicaretAPI.Domain\\ETicaretAPI.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Core\\ETicaretAPI.Domain\\ETicaretAPI.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

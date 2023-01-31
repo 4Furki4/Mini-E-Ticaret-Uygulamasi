@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/XvgiKth9VrEjgYN4nwXUV2uCqV+UG5A9dtyXSOapywC9CSOC8BTWGDt/me1ngjtvUY9TPw2B6M/ivhf9ItlNw==",
+  "dgSpecHash": "/ZUydNSJcAYUOeYQoqJa9Jx6f45juBOas/8CMgKGpVA6BkY/LlzY1y0wJNeLv5Ukny9SkfPNI8N7IDJVUxphTQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Furkan Cengiz\\OneDrive\\Masaüstü\\Yazılım\\repo\\4Furki4\\ETicaretUygulaması\\ETicaretAPI\\Core\\ETicaretAPI.Application\\ETicaretAPI.Application.csproj",
+  "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Core\\ETicaretAPI.Application\\ETicaretAPI.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
