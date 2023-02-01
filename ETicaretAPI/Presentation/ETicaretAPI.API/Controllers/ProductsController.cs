@@ -7,11 +7,11 @@ namespace ETicaretAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductCommandRepository productCommand;
         private readonly IProductQueryRepository productQuery;
-        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
+        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;

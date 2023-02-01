@@ -22,8 +22,11 @@ export class HttpClientService {
   }
 
 
-  post() {
-
+  post<T>(requestParams: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
+    let url: string = `${this.url(requestParams)}`
+    return this.httpClient.post<T>(url, body, {
+      headers: requestParams.headers
+    });
   }
 
 
