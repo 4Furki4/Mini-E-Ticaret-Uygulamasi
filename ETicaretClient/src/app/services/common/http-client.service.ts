@@ -30,12 +30,18 @@ export class HttpClientService {
   }
 
 
-  put() {
-
+  put<T>(requestParams: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
+    let url: string = `${this.url(requestParams)}`
+    return this.httpClient.put<T>(url, body, {
+      headers: requestParams.headers
+    });
   }
 
-  delete() {
-
+  delete(requestParams: Partial<RequestParameters>, id: string): Observable<any> {
+    let url: string = `${this.url(requestParams)}/${id}`
+    return this.httpClient.delete(url, {
+      headers: requestParams.headers
+    });
   }
 }
 
