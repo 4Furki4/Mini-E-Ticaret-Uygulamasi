@@ -1,6 +1,6 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Application.ViewModels.Product;
 using ETicaretAPI.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretAPI.API.Controllers
@@ -11,62 +11,69 @@ namespace ETicaretAPI.API.Controllers
     {
         private readonly IProductCommandRepository productCommand;
         private readonly IProductQueryRepository productQuery;
-        private readonly ICustomerCommandRepository customerCommand;
-        private readonly ICustomerQueryRepository customerQuery;
-        private readonly IOrderCommandRepository orderCommand;
-        private readonly IOrderQueryRepository orderQuery;
-        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, ICustomerCommandRepository customerCommand, ICustomerQueryRepository customerQuery, IOrderCommandRepository orderCommand, IOrderQueryRepository orderQuery)
+        public ProductController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
-            this.customerCommand = customerCommand;
-            this.customerQuery = customerQuery;
-            this.orderCommand = orderCommand;
-            this.orderQuery = orderQuery;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            bool productHasItems = productQuery.GetAll().Any();
-            if (!productHasItems)
-            {
-                await productCommand.AddAsync(new()
-                {
-                    Name = "Silgi",
-                    Price = 15,
-                    Stock = 1000,
-                    Id = Guid.NewGuid(),
-                    CreatedDate = DateTime.UtcNow
-                });
-                await productCommand.SaveAsync();
-            }
-            var customerId = Guid.NewGuid();
-            await customerCommand.AddAsync(new()
-            {
-                Name = "Furkan",
-                Id = customerId
-            });
-            await orderCommand.AddAsync(new()
-            {
-                Address = "Çekmeköy İstanbul",
-                Description = "sipariş test",
-                Id = Guid.NewGuid(),
-                CustomerId = customerId
-            });
-            await productCommand.SaveAsync();
-            var product = productQuery.GetAll();
+            return Ok(productQuery.GetAll(false));
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetById(string id) 
+        {
+
+            var product = await productQuery.GetByIdAsync(id, false);
             return Ok(product);
         }
-        [HttpGet("id")]
-        public async Task GetById(string id)
+        [HttpPost]
+        public async Task<IActionResult> Post (CreateProductViewModel viewModel)
         {
-            Customer customer= await customerQuery.GetByIdAsync(id);
+            Product product = new()
+            {
+                Stock = viewModel.Stock,
+                Price = (long)viewModel.Price,
+                Name = viewModel.Name,
+            };
 
-            customer.Name = "Meltem";
+            var isCreated = await productCommand.AddAsync(product);
 
             await productCommand.SaveAsync();
+            return CreatedAtAction(nameof(Post), product); 
         }
 
+
+        [HttpPut]
+
+        public async Task<IActionResult> Put(PutProductViewModel viewModel)
+        {
+            Product product = await productQuery.GetByIdAsync(viewModel.Id);
+
+            product.Stock = viewModel.Stock;
+
+            product.Price = (long) viewModel.Price;
+
+            product.Name = viewModel.Name;
+
+            await productCommand.SaveAsync();
+            return Ok("Updated!");
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            bool isDeleted = await productCommand.RemoveAsync(id);
+            await productCommand.SaveAsync();
+            if (isDeleted)
+                return Ok("Deleted");
+            else
+                return NotFound("The product with the given id doesn't exist.");
+        }
 
     }
 }

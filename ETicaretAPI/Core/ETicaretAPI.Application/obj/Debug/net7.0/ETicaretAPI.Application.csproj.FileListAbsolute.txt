@@ -28,3 +28,18 @@ C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAP
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\refint\ETicaretAPI.Application.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.pdb
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ref\ETicaretAPI.Application.dll
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.deps.json
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.dll
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Application.pdb
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Domain.dll
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\bin\Debug\net7.0\ETicaretAPI.Domain.pdb
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.AssemblyReference.cache
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.AssemblyInfo.cs
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.csproj.CopyComplete
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.dll
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\refint\ETicaretAPI.Application.dll
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ETicaretAPI.Application.pdb
+C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Core\ETicaretAPI.Application\obj\Debug\net7.0\ref\ETicaretAPI.Application.dll
