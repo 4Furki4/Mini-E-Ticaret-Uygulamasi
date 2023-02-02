@@ -7,9 +7,17 @@ export class BaseComponent {
 
   showSpinner(type: SpinnerTypes = SpinnerTypes.Ball8Bits) {
     this.spinner.show(type, { color: '#3F51B5' });
+  }
+
+  hideSpinner(type: SpinnerTypes = SpinnerTypes.Ball8Bits) {
+    this.spinner.hide(type);
+  }
+
+  transitionSpinner(type: SpinnerTypes = SpinnerTypes.Ball8Bits) {
+    this.spinner.show(type)
     setTimeout(() => {
-      this.spinner.hide(type);
-    }, 1000);
+      this.spinner.hide(type)
+    }, 750);
   }
 }
 

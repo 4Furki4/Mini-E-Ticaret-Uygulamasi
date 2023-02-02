@@ -12,7 +12,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     super(spinner);
   }
   ngOnInit(): void {
-    this.showSpinner(SpinnerTypes.Cog);
+    this.transitionSpinner(SpinnerTypes.Cog)
   }
 
   trigger() {
