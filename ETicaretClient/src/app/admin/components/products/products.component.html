@@ -1,1 +1,8 @@
-<p>products works!</p>
+<mat-drawer-container class="products-drawer">
+    <mat-drawer mode="side" opened class="col-4">
+        <app-create></app-create>
+    </mat-drawer>
+    <mat-drawer-content class="col-8">
+        <app-list></app-list>
+    </mat-drawer-content>
+</mat-drawer-container>
