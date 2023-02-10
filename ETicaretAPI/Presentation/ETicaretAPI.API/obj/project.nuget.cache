@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "J4u/HOLDjU29r//44QyBq/pQZLYDbZ/6Pj6FuTJJfARYTZdfOQmip6GyEsUeDuhnAowDdXGlWsDwDCqs2JYZvg==",
+  "dgSpecHash": "llbGn7xfYCH4QUXEMOSgFc2y8uRAlTIkq/OMIBaIiVeETSbwl+grnWoxib6cPWR9xX9Lv7t6tC3/jCeOnsErrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\ETicaretAPI.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",

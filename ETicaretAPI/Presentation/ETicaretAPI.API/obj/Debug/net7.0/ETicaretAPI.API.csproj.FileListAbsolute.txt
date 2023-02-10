@@ -244,3 +244,8 @@ C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\
 C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\obj\Debug\net7.0\ETicaretAPI.API.pdb
 C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\obj\Debug\net7.0\ETicaretAPI.API.genruntimeconfig.cache
 C:\Users\HP\Documents\GitHub\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\obj\Debug\net7.0\ref\ETicaretAPI.API.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.pdb

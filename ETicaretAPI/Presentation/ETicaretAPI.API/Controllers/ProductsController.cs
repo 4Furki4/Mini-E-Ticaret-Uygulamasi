@@ -1,7 +1,10 @@
 ﻿using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.ViewModels.Product;
 using ETicaretAPI.Domain.Entities;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace ETicaretAPI.API.Controllers
 {
@@ -11,10 +14,12 @@ namespace ETicaretAPI.API.Controllers
     {
         private readonly IProductCommandRepository productCommand;
         private readonly IProductQueryRepository productQuery;
-        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery)
+        private readonly IValidator<CreateProductViewModel> validator;
+        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
+            this.validator = validator;
         }
         [HttpGet]
         public IActionResult Get()
@@ -33,6 +38,12 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post (CreateProductViewModel viewModel)
         {
+            ValidationResult validationResult = await validator.ValidateAsync(viewModel);
+            
+            if (ModelState.IsValid)
+            {
+
+            }
             Product product = new()
             {
                 Stock = viewModel.Stock,
@@ -60,7 +71,7 @@ namespace ETicaretAPI.API.Controllers
             product.Name = viewModel.Name;
 
             await productCommand.SaveAsync();
-            return Ok("Updated!");
+            return Ok(new { message = "Updated!"});
         }
 
         [HttpDelete("{id}")]
@@ -70,9 +81,9 @@ namespace ETicaretAPI.API.Controllers
             bool isDeleted = await productCommand.RemoveAsync(id);
             await productCommand.SaveAsync();
             if (isDeleted)
-                return Ok("Deleted");
+                return Ok(new {message = "Deleted" });
             else
-                return NotFound("The product with the given id doesn't exist.");
+                return NotFound(new { message = "The product with the given id doesn't exist." });
         }
 
     }
