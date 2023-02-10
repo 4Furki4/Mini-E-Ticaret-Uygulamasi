@@ -30,56 +30,5 @@ export class ProductsComponent extends BaseComponent implements OnInit {
         console.log("Request completed.");
       }
     });
-
-    // this.httpService.post({
-    //   controller: 'products'
-    // }, {
-    //   name: 'Test',
-    //   stock: 10,
-    //   price: 100
-    // }).subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    //   complete: () => {
-    //     console.log("Request completed.");
-    //   }
-    // })
-
-    // this.httpService.put({
-    //   controller: 'products'
-    // }, {
-    //   id: '9f1c52d7-d388-49ef-fb2f-08db049be384',
-    //   name: 'Updated Test',
-    //   stock: 31,
-    //   price: 3131
-    // }).subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    //   complete: () => {
-    //     console.log("Request completed.");
-    //   }
-    // })
-
-    // this.httpService.delete({
-    //   controller: 'products'
-    // }, "9f1c52d7-d388-49ef-fb2f-08db049be384").subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    //   complete: () => {
-    //     console.log("Request completed.");
-    //   }
-    // })
   }
 }
