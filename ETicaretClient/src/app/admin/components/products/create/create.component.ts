@@ -28,14 +28,21 @@ export class CreateComponent extends BaseComponent implements OnInit {
     product.price = parseFloat(price.value);
 
     this.createService.postProduct(product, () => {
-
       this.hideSpinner(SpinnerTypes.Ball8Bits);
       this.alertify.message("Ürün başarıyla oluşturuldu.", {
         alertType: AlertType.Success,
         position: Position.TopRight,
         dismissOthers: true
-      })
-    }
+      });
+    },
+      (message) => {
+        this.hideSpinner(SpinnerTypes.Ball8Bits);
+        this.alertify.message(message, {
+          alertType: AlertType.Error,
+          position: Position.TopRight,
+          dismissOthers: true
+        });
+      }
     )
   }
 }
