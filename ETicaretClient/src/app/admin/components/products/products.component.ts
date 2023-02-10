@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
+import { CreateProduct } from 'src/app/Contracts/create-product';
 import { Product } from 'src/app/Contracts/product';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
+import { ListComponent } from './list/list.component';
 
 @Component({
   selector: 'app-products',
@@ -14,21 +16,11 @@ export class ProductsComponent extends BaseComponent implements OnInit {
     super(spinner);
   }
 
+  @ViewChild(ListComponent) listComponent!: ListComponent;
+  ProductCreated(product: CreateProduct) {
+    console.log(product)
+    this.listComponent.getProducts();
+  }
   ngOnInit() {
-
-    this.transitionSpinner(SpinnerTypes.Ball8Bits)
-    this.httpService.get<Product[]>({
-      controller: 'products',
-    }).subscribe({
-      next: (data) => {
-        console.log(data.forEach(product => console.log(`Ürün adı: ${product.name}`)));
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log("Request completed.");
-      }
-    });
   }
 }

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class HttpClientService {
     if (requestParams.fullEndpoint)
       return requestParams.fullEndpoint;
     else {
-      return `${requestParams.baseUrl ? requestParams.baseUrl : this.baseUrl}/${requestParams.controller}${requestParams.action ? `/${requestParams.action}` : ``}`
+      return `${requestParams.baseUrl ? requestParams.baseUrl : this.baseUrl}/${requestParams.controller}${requestParams.action ? `/${requestParams.action}` : ''}${requestParams.queryString ? `?${requestParams.queryString}` : ''}`;
     }
   }
   get<T>(requestParams: Partial<RequestParameters>, id?: string): Observable<T> {
@@ -51,4 +51,5 @@ export class RequestParameters {
   action?: string;
   fullEndpoint?: string;
   headers?: HttpHeaders;
+  queryString?: string;
 }
