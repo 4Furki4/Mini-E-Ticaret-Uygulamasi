@@ -25,6 +25,18 @@
             <th mat-header-cell *matHeaderCellDef> Updated Date </th>
             <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
         </ng-container>
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- coming soon -->
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td [id]="element.id" mat-cell *matCellDef="let element" appDelete (deleteCallBack)="getProducts()">
+                <!-- coming soon -->
+            </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

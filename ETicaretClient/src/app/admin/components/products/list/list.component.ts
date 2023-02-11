@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/services/admin/models/product.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent extends BaseComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate'];
+  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate', 'delete', 'edit'];
   dataSource!: MatTableDataSource<ListProduct>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
