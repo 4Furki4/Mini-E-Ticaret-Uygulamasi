@@ -3,6 +3,6 @@
     <p>Silmek işlemini onaylıyor musunuz ?</p>
 </div>
 <div class="buttons" mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Hayır</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Evet</button>
+    <button mat-button cdkFocusInitial (click)="onNoClick()">Hayır</button>
+    <button mat-button [mat-dialog-close]="data">Evet</button>
 </div>
