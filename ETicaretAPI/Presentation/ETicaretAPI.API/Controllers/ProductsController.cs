@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Application.RequestParams;
 using ETicaretAPI.Application.ViewModels.Product;
 using ETicaretAPI.Domain.Entities;
 using FluentValidation;
@@ -22,9 +23,24 @@ namespace ETicaretAPI.API.Controllers
             this.validator = validator;
         }
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] Pagination pagination)
         {
-            return Ok(productQuery.GetAll(false));
+           var totalSize = productQuery.GetAll(false).Count();
+           var products = productQuery.GetAll(false)
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Name,
+                    p.Price,
+                    p.Stock,
+                    p.CreatedDate,
+                    p.UpdatedDate
+                }).Skip(pagination.Size * pagination.Page).Take(pagination.Size).ToList();
+            return Ok(new
+            {
+                products,
+                totalSize
+            });
         }
 
         [HttpGet("{id}")]
