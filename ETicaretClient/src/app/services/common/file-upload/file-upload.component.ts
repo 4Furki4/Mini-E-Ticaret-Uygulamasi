@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
+import { error } from 'console';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { AlertifyService, AlertType, Position } from '../../admin/alertify/alertify.service';
+import { CustomToasterService, ToasterOptions, ToasterPosition, ToasterType } from '../../ui/toaster/custom-toaster.service';
+import { HttpClientService } from '../http-client.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,49 +12,72 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent {
+
+  @Input() options !: Partial<FileUploadOptions>;
+
+  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private toastrService: CustomToasterService) {
+
+  }
   public files: NgxFileDropEntry[] = [];
 
   public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    let formFile: FormData = new FormData();
+    const formFile: FormData = new FormData();
     for (const droppedFile of files) {
-      if (droppedFile.fileEntry.isFile) {
-        const FSfileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        FSfileEntry.file((file: File) => {
-          formFile.append(file.name, file, droppedFile.relativePath);
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-
-          /**
-          // You could upload it like this:
-          const formData = new FormData()
-          formData.append('logo', file, relativePath)
-
-          // Headers
-          const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
-
-          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          .subscribe(data => {
-            // Sanitized logo returned from backend
-          })
-          **/
-
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
-      }
+      (droppedFile.fileEntry as FileSystemFileEntry).file((file: File) => {
+        formFile.append(file.name, file, droppedFile.relativePath);
+      });
     }
+    this.httpClientService.post({
+      controller: this.options.controller,
+      action: this.options.action,
+      queryString: this.options.queryParams,
+      headers: new HttpHeaders({
+        "responseType": "blob"
+      })
+    }, formFile).subscribe({
+      next: (response) => {
+        this.files = files;
+        if (this.options.isAdminSide) {
+          this.alertifyService.message("Seçilen dosya(lar) başarıyla yüklendi.", {
+            alertType: AlertType.Success,
+            delay: 5000,
+            dismissOthers: true,
+            position: Position.TopLeft
+          })
+        }
+        else {
+          this.toastrService.message("Seçilen dosya(lar) başarıyla yüklendi.", 'Yükleme Başarılı !', {
+            messageType: ToasterType.Success,
+            position: ToasterPosition.TopLeft
+          });
+        }
+      },
+      error: (error) => {
+        if (this.options.isAdminSide) {
+          this.alertifyService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", {
+            alertType: AlertType.Error,
+            delay: 5000,
+            dismissOthers: true,
+            position: Position.TopLeft
+          })
+        }
+        else {
+          this.toastrService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", 'Yükleme Başarısız !', {
+            messageType: ToasterType.Error,
+            position: ToasterPosition.TopLeft
+          });
+        }
+      }
+    })
   }
 
-  public fileOver(event: any) {
-    console.log(event);
-  }
+}
 
-  public fileLeave(event: any) {
-    console.log(event);
-  }
+export class FileUploadOptions {
+  controller?: string;
+  action?: string;
+  queryParams?: string;
+  explanation?: string;
+  accept?: string;
+  isAdminSide?: boolean = false;
 }

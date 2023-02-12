@@ -1,8 +1,7 @@
 <div class="center">
-    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
-        (onFileLeave)="fileLeave($event)">
+    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" accept=".jpeg, .png, .jpg">
         <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-            Optional custom content that replaces the the entire default content.
+            {{options.explanation}}
             <!-- text will be based on where it is used. -->
             <button type="button" (click)="openFileSelector()">Seç</button>
         </ng-template>
