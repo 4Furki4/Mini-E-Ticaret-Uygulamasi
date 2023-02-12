@@ -6,6 +6,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO.Pipelines;
 
 namespace ETicaretAPI.API.Controllers
 {
@@ -16,11 +17,13 @@ namespace ETicaretAPI.API.Controllers
         private readonly IProductCommandRepository productCommand;
         private readonly IProductQueryRepository productQuery;
         private readonly IValidator<CreateProductViewModel> validator;
-        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator)
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
             this.validator = validator;
+            this.webHostEnvironment = webHostEnvironment;
         }
         [HttpGet]
         public IActionResult Get([FromQuery] Pagination pagination)
@@ -100,6 +103,30 @@ namespace ETicaretAPI.API.Controllers
                 return Ok(new {message = "Deleted" });
             else
                 return NotFound(new { message = "The product with the given id doesn't exist." });
+        }
+
+        [HttpPost("[action]")]
+
+        public async Task<IActionResult> Upload()
+        {
+            Random r = new();
+            string sourcePath = Path.Combine(webHostEnvironment.WebRootPath, "source/product-images");
+
+            if(!Directory.Exists(sourcePath))
+                Directory.CreateDirectory(sourcePath);
+            foreach(IFormFile file in Request.Form.Files)
+            {
+                string fullPath = Path.Combine(sourcePath, $"{r.Next()}{Path.GetExtension(file.FileName)}");
+                using FileStream fileStream = 
+                    new
+                    (
+                        fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, false
+                    );
+                await file.CopyToAsync( fileStream );
+                await fileStream.FlushAsync();
+            }
+
+            return Ok();
         }
 
     }

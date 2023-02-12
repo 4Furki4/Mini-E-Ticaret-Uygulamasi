@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\468094353.png",
+      "PackagePath": "staticwebassets\\source\\product-images\\468094353.png"
+    },
+    {
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\668080601.png",
+      "PackagePath": "staticwebassets\\source\\product-images\\668080601.png"
+    },
+    {
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\796553011.png",
+      "PackagePath": "staticwebassets\\source\\product-images\\796553011.png"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ETicaretAPI.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.ETicaretAPI.API.props",
+      "PackagePath": "build\\ETicaretAPI.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.ETicaretAPI.API.props",
+      "PackagePath": "buildMultiTargeting\\ETicaretAPI.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.ETicaretAPI.API.props",
+      "PackagePath": "buildTransitive\\ETicaretAPI.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

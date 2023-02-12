@@ -249,3 +249,4 @@ C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAP
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.pdb
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.API.staticwebassets.runtime.json
