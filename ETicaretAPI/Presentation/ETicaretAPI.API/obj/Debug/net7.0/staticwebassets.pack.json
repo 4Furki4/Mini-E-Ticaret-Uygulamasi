@@ -1,16 +1,12 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\468094353.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\468094353.png"
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\1121414209.png",
+      "PackagePath": "staticwebassets\\source\\product-images\\1121414209.png"
     },
     {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\668080601.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\668080601.png"
-    },
-    {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\796553011.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\796553011.png"
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\119588038.png",
+      "PackagePath": "staticwebassets\\source\\product-images\\119588038.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ETicaretAPI.API.Microsoft.AspNetCore.StaticWebAssets.props",

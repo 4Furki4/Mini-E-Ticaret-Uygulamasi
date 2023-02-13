@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Core",
     "\\ETicaretAPI",
     "\\ETicaretAPI\\Presentation",
     "\\ETicaretAPI\\Presentation\\ETicaretAPI.API"

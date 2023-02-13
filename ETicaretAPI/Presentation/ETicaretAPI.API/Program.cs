@@ -1,4 +1,5 @@
 using ETicaretAPI.Application.Validators.Products;
+using ETicaretAPI.Infrastructure;
 using ETicaretAPI.Infrastructure.Filters;
 using ETicaretAPI.Persistence;
 using FluentValidation;
@@ -15,6 +16,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
+builder.Services.AddInfrastructureServices();
 builder.Services.AddCors(opt => opt.AddDefaultPolicy( policy => policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()));
 
 var app = builder.Build();
