@@ -15,6 +15,7 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 import { DialogModule } from 'src/app/dialogs/dialog.module';
+import { DialogService } from 'src/app/services/common/dialog.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { DialogModule } from 'src/app/dialogs/dialog.module';
     MatPaginatorModule,
     FileUploadModule,
     DialogModule
+  ],
+  providers: [
+    { provide: DialogService }
   ]
 })
 export class ProductsModule { }
