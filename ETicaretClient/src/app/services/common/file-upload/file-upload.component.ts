@@ -1,7 +1,9 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { error } from 'console';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { FileUploadDialogComponent, FileUploadDialogResponse } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { AlertifyService, AlertType, Position } from '../../admin/alertify/alertify.service';
 import { CustomToasterService, ToasterOptions, ToasterPosition, ToasterType } from '../../ui/toaster/custom-toaster.service';
 import { HttpClientService } from '../http-client.service';
@@ -15,7 +17,8 @@ export class FileUploadComponent {
 
   @Input() options !: Partial<FileUploadOptions>;
 
-  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private toastrService: CustomToasterService) {
+  constructor(private httpClientService: HttpClientService,
+    private alertifyService: AlertifyService, private toastrService: CustomToasterService, public dialog: MatDialog) {
 
   }
   public files: NgxFileDropEntry[] = [];
@@ -27,46 +30,66 @@ export class FileUploadComponent {
         formFile.append(file.name, file, droppedFile.relativePath);
       });
     }
-    this.httpClientService.post({
-      controller: this.options.controller,
-      action: this.options.action,
-      queryString: this.options.queryParams,
-      headers: new HttpHeaders({
-        "responseType": "blob"
+    this.openDialog(() => {
+      this.httpClientService.post({
+        controller: this.options.controller,
+        action: this.options.action,
+        queryString: this.options.queryParams,
+        headers: new HttpHeaders({
+          "responseType": "blob"
+        })
+      }, formFile).subscribe({
+        next: (response) => {
+          this.files = files;
+          if (this.options.isAdminSide) {
+            this.alertifyService.message("Seçilen dosya(lar) başarıyla yüklendi.", {
+              alertType: AlertType.Success,
+              delay: 5000,
+              dismissOthers: true,
+              position: Position.TopLeft
+            })
+          }
+          else {
+            this.toastrService.message("Seçilen dosya(lar) başarıyla yüklendi.", 'Yükleme Başarılı !', {
+              messageType: ToasterType.Success,
+              position: ToasterPosition.TopLeft
+            });
+          }
+        },
+        error: (error) => {
+          if (this.options.isAdminSide) {
+            this.alertifyService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", {
+              alertType: AlertType.Error,
+              delay: 5000,
+              dismissOthers: true,
+              position: Position.TopLeft
+            })
+          }
+          else {
+            this.toastrService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", 'Yükleme Başarısız !', {
+              messageType: ToasterType.Error,
+              position: ToasterPosition.TopLeft
+            });
+          }
+        }
       })
-    }, formFile).subscribe({
-      next: (response) => {
-        this.files = files;
-        if (this.options.isAdminSide) {
-          this.alertifyService.message("Seçilen dosya(lar) başarıyla yüklendi.", {
-            alertType: AlertType.Success,
-            delay: 5000,
-            dismissOthers: true,
-            position: Position.TopLeft
-          })
-        }
-        else {
-          this.toastrService.message("Seçilen dosya(lar) başarıyla yüklendi.", 'Yükleme Başarılı !', {
-            messageType: ToasterType.Success,
-            position: ToasterPosition.TopLeft
-          });
-        }
-      },
-      error: (error) => {
-        if (this.options.isAdminSide) {
-          this.alertifyService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", {
-            alertType: AlertType.Error,
-            delay: 5000,
-            dismissOthers: true,
-            position: Position.TopLeft
-          })
-        }
-        else {
-          this.toastrService.message("Seçilen dosya(lar) yüklenirken hata oluştu.", 'Yükleme Başarısız !', {
-            messageType: ToasterType.Error,
-            position: ToasterPosition.TopLeft
-          });
-        }
+    })
+  }
+
+  openDialog(deleteApproveCallBack: () => void): void {
+    const dialogRef = this.dialog.open(FileUploadDialogComponent, {
+      data: FileUploadDialogResponse.Yes,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == FileUploadDialogResponse.Yes)
+        deleteApproveCallBack();
+      else {
+        this.alertifyService.message("Dosya yüklemesi iptal edildi.", {
+          alertType: AlertType.Message,
+          delay: 2000,
+          position: Position.TopLeft,
+          dismissOthers: true
+        })
       }
     })
   }

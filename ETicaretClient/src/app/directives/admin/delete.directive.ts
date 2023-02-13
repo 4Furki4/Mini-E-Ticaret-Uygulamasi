@@ -1,7 +1,7 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
-import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent, DeleteDialogResponse } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { AlertifyService, AlertType, Position } from 'src/app/services/admin/alertify/alertify.service';
 import { ProductService } from 'src/app/services/admin/models/product.service';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
@@ -59,7 +59,4 @@ export class DeleteDirective {
     })
   }
 }
-export enum DeleteDialogResponse {
-  Yes,
-  No
-}
+
