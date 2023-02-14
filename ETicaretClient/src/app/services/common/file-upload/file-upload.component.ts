@@ -24,7 +24,6 @@ export class FileUploadComponent {
 
   }
   public files: NgxFileDropEntry[] = [];
-
   public dropped(files: NgxFileDropEntry[]) {
     const formFile: FormData = new FormData();
     for (const droppedFile of files) {
@@ -46,6 +45,7 @@ export class FileUploadComponent {
         }, formFile).subscribe({
           next: (response) => {
             this.files = files;
+            debugger;
             if (this.options.isAdminSide) {
               this.alertifyService.message("Seçilen dosya(lar) başarıyla yüklendi.", {
                 alertType: AlertType.Success,

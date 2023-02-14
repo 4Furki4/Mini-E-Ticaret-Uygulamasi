@@ -12,19 +12,23 @@ export class DialogService {
     const dialogRef = this.dialog.open(dialogParameters.componentType!, {
       width: dialogParameters.options!.width,
       height: dialogParameters.options!.height,
-      position: dialogParameters.options!.position
+      position: dialogParameters.options!.position,
+      data: dialogParameters.data
     });
+    debugger;
+
     dialogRef.afterClosed().subscribe(result => {
+      debugger;
       if (result == dialogParameters.data)
-        dialogParameters.deleteApproveCallBack!()
+        dialogParameters.deleteApproveCallBack();
     })
   }
 }
 
 export class DialogParameters {
   componentType !: ComponentType<any>;
-  data !: any;
-  deleteApproveCallBack !: () => void;
+  data !: number;
+  deleteApproveCallBack: any;
   options !: Partial<DialogOptions>;
 }
 export class DialogOptions {

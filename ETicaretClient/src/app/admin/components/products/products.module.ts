@@ -37,9 +37,6 @@ import { DialogService } from 'src/app/services/common/dialog.service';
     MatPaginatorModule,
     FileUploadModule,
     DialogModule
-  ],
-  providers: [
-    { provide: DialogService }
   ]
 })
 export class ProductsModule { }
