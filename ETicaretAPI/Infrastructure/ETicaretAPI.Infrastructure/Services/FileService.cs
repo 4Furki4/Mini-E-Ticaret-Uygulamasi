@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Services;
+﻿using ETicaretAPI.Application.Operations;
+using ETicaretAPI.Application.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -18,17 +19,42 @@ namespace ETicaretAPI.Infrastructure.Services
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        public Task<string> FileRenameAsync(string path)
+        private async Task<string> FileRenameAsync(string path, string fileName)
         {
-            throw new NotImplementedException();
+            return await Task.Run<string>(() =>
+            {
+                string oldName = Path.GetFileNameWithoutExtension(fileName);
+                string extension = Path.GetExtension(fileName);
+                string newFileName = $"{NameOperation.NameRegulatory(oldName)}{extension}";
+                bool fileIsExists = false;
+                int fileIndex = 0;
+                do
+                {
+                    if (File.Exists($"{path}\\{newFileName}"))
+                    {
+                        fileIsExists = true;
+                        fileIndex++;
+                        newFileName = $"{NameOperation.NameRegulatory(oldName + "-" + fileIndex)}{extension}";
+                    }
+                    else
+                    {
+                        fileIsExists = false;
+                    }
+                } while (fileIsExists);
+
+                return newFileName;
+            });
+
+
+
         }
 
         public async Task<bool> CopyAsync(IFormFile file, string path)
         {
             try
             {
-                await using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, false);
-                await fileStream.CopyToAsync(fileStream);
+                using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, false);
+                await file.CopyToAsync(fileStream);
                 await fileStream.FlushAsync();
                 return true;
             }
@@ -48,8 +74,8 @@ namespace ETicaretAPI.Infrastructure.Services
             List<(string path, string name)> data = new();
             foreach(IFormFile file in files)
             {
-                string fileNewName = await FileRenameAsync(file.FileName);
-                bool result = await CopyAsync(file, $"{pathToUpload}\\${fileNewName}");
+                string fileNewName = await FileRenameAsync(pathToUpload, file.FileName);
+                bool result = await CopyAsync(file, $"{pathToUpload}\\{fileNewName}");
                 data.Add(($"{pathToUpload}\\${fileNewName}", fileNewName));
                 results.Add(result);
             }
