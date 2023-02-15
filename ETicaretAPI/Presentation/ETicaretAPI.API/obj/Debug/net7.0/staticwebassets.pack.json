@@ -1,28 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-25-1.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-25-1.png"
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\invoices\\2022-12-17.png",
+      "PackagePath": "staticwebassets\\source\\invoices\\2022-12-17.png"
     },
     {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-25.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-25.png"
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\invoices\\2022-12-20.png",
+      "PackagePath": "staticwebassets\\source\\invoices\\2022-12-20.png"
     },
     {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-26-1.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-26-1.png"
-    },
-    {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-26-2.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-26-2.png"
-    },
-    {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-26-3.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-26-3.png"
-    },
-    {
-      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\product-images\\2023-01-26.png",
-      "PackagePath": "staticwebassets\\source\\product-images\\2023-01-26.png"
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\invoices\\2023-01-26.png",
+      "PackagePath": "staticwebassets\\source\\invoices\\2023-01-26.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ETicaretAPI.API.Microsoft.AspNetCore.StaticWebAssets.props",

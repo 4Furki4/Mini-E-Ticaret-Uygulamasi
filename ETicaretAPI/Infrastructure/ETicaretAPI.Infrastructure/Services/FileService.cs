@@ -1,5 +1,4 @@
 ﻿using ETicaretAPI.Application.Operations;
-using ETicaretAPI.Application.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Infrastructure.Services
 {
-    public class FileService : IFileService
+    public class FileService
     {
         private readonly IWebHostEnvironment webHostEnvironment;
 
@@ -76,7 +75,7 @@ namespace ETicaretAPI.Infrastructure.Services
             {
                 string fileNewName = await FileRenameAsync(pathToUpload, file.FileName);
                 bool result = await CopyAsync(file, $"{pathToUpload}\\{fileNewName}");
-                data.Add(($"{pathToUpload}\\${fileNewName}", fileNewName));
+                data.Add(($"{path}\\{fileNewName}", fileNewName));
                 results.Add(result);
             }
             if (results.TrueForAll(result => result.Equals(true)))
