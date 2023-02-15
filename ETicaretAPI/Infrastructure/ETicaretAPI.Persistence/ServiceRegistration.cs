@@ -26,6 +26,12 @@ namespace ETicaretAPI.Persistence
             services.AddScoped<IOrderQueryRepository, OrderQueryRepository>();
             services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
             services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
+            services.AddScoped<IFileQueryRepository, FileQueryRepository>();
+            services.AddScoped<IFileCommandRepository, FileCommandRepository>();
+            services.AddScoped<IInvoiceFileCommandRepository, InvoiceFileCommandRepository>();
+            services.AddScoped<IInvoiceFileQueryRepository, InvoiceFileQueryRepository>();
+            services.AddScoped<IProductImageQueryRepository, ProductImageFileQueryRepository>();
+            services.AddScoped<IProductImageCommandRepository, ProductImageCommandRepository>();
         }
     }
 }
