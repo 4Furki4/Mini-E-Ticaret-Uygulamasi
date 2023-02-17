@@ -10,7 +10,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
     public class Storage
     {
 
-        protected delegate bool HasFile(string pathOrContainer, string fileName);
+        protected delegate bool HasFile(string fileName, string pathOrContainer);
         protected async Task<string> FileRenameAsync(string pathOrContainer, HasFile hasFile ,string fileName)
         {
             return await Task.Run<string>(() =>
@@ -22,7 +22,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
                 int fileIndex = 0;
                 do
                 {
-                    if (hasFile(pathOrContainer, newFileName))
+                    if (hasFile(newFileName, pathOrContainer))
                     {
                         fileIsExists = true;
                         fileIndex++;
