@@ -21,7 +21,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
 
         public Task DeleteAsync(string fileName, string pathOrContainerName) => storage.DeleteAsync(fileName, pathOrContainerName);
 
-        public Task<List<string>> GetFiles(string pathOrContainerName) => storage.GetFiles(pathOrContainerName);
+        public List<string> GetFiles(string pathOrContainerName) => storage.GetFiles(pathOrContainerName);
         
 
         public bool HasFiles(string fileName, string pathOrContainerName) => storage.HasFiles(fileName, pathOrContainerName);

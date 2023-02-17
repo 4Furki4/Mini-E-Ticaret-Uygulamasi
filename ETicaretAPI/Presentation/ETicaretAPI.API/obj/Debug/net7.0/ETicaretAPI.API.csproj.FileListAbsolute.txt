@@ -250,3 +250,9 @@ C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAP
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.Infrastructure.pdb
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\ETicaretAPI.API.staticwebassets.runtime.json
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Azure.Core.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Azure.Storage.Blobs.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Azure.Storage.Common.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\System.IO.Hashing.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\System.Memory.Data.dll

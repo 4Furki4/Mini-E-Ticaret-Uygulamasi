@@ -20,7 +20,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
         public async Task DeleteAsync(string fileName, string path)
             => File.Delete($"{path}\\{fileName}");
 
-        public async Task<List<string>> GetFiles(string path)
+        public List<string> GetFiles(string path)
         {
             DirectoryInfo directoryInfo = new(path);
             return directoryInfo.GetFiles().Select(f => f.Name).ToList();
