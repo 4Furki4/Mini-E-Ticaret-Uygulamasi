@@ -13,14 +13,13 @@ import { DialogService } from '../dialog.service';
   ],
   imports: [
     CommonModule,
-    NgxFileDropModule,
-    DialogModule
+    NgxFileDropModule
   ],
   exports: [
     FileUploadComponent
   ],
-  // providers: [
-  //   { provide: DialogService }
-  // ]
+  providers: [
+    { provide: DialogService }
+  ]
 })
 export class FileUploadModule { }
