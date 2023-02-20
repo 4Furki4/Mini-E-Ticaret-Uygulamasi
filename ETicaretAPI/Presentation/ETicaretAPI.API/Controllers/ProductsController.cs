@@ -117,7 +117,7 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> Upload()
         {
-            var values = await storageService.UploadAsync("files", Request.Form.Files);
+            var values = await storageService.UploadAsync("photo-images", Request.Form.Files);
             await productImageCommandRepository.AddRangeAsync(values.Select(val => new ProductImageFile()
             {
                 FileName = val.fileName,
@@ -125,16 +125,6 @@ namespace ETicaretAPI.API.Controllers
                 Storage = storageService.StorageType
             }).ToList());
             await productImageCommandRepository.SaveAsync();
-            //return Ok(values);
-            //Random random= new Random();
-            //var values = await fileService.UploadAsync("source/invoices", Request.Form.Files);
-            //await invoiceFileCommandRepository.AddRangeAsync(values.Select(val => new InvoiceFile()
-            //{
-            //    FileName = val.name,
-            //    Path = val.path,
-            //    Price = random.Next(100)
-            //}).ToList());
-            //await invoiceFileCommandRepository.SaveAsync();
             return Ok();
         }
 

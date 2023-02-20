@@ -51,7 +51,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
                 string fileNewName = await FileRenameAsync(containerName, HasFiles, file.Name);
                 BlobClient blobClient = blobContainerClient.GetBlobClient(fileNewName);
                 await blobClient.UploadAsync(file.OpenReadStream());
-                values.Add((fileNewName, containerName));
+                values.Add((fileNewName, $"{containerName}/{fileNewName}"));
             }
             return values;
         }

@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\photo-images\\2023-01-26.png",
+      "PackagePath": "staticwebassets\\photo-images\\2023-01-26.png"
+    },
+    {
+      "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\photo-images\\2023-02-17.png",
+      "PackagePath": "staticwebassets\\photo-images\\2023-02-17.png"
+    },
+    {
       "Id": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\wwwroot\\source\\invoices\\2022-12-17.png",
       "PackagePath": "staticwebassets\\source\\invoices\\2022-12-17.png"
     },
