@@ -15,10 +15,7 @@ export class DialogService {
       position: dialogParameters.options!.position,
       data: dialogParameters.data
     });
-    debugger;
-
     dialogRef.afterClosed().subscribe(result => {
-      debugger;
       if (result == dialogParameters.data)
         dialogParameters.deleteApproveCallBack();
     })

@@ -6,14 +6,14 @@
             <button type="button" (click)="openFileSelector()">Seç</button>
         </ng-template>
     </ngx-file-drop>
-    <div class="upload-table">
-        <table class="table">
+    <div>
+        <table class="table text-light">
             <thead>
                 <tr>
                     <th>Seçilenler</th>
                 </tr>
             </thead>
-            <tbody class="upload-name-style">
+            <tbody>
                 <tr *ngFor="let item of files; let i=index">
                     <td><strong>{{ item.relativePath }}</strong></td>
                 </tr>

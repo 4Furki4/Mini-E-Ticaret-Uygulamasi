@@ -12,7 +12,6 @@ export class FileUploadDialogComponent extends BaseDialog<FileUploadDialogCompon
     dialogRef: MatDialogRef<FileUploadDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FileUploadDialogResponse,
   ) {
-    debugger;
     super(dialogRef);
   }
 
