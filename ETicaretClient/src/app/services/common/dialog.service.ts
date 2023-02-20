@@ -17,15 +17,15 @@ export class DialogService {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == dialogParameters.data)
-        dialogParameters.deleteApproveCallBack();
+        dialogParameters.afterClosed();
     })
   }
 }
 
 export class DialogParameters {
   componentType !: ComponentType<any>;
-  data !: number;
-  deleteApproveCallBack: any;
+  data !: any;
+  afterClosed: any;
   options !: Partial<DialogOptions>;
 }
 export class DialogOptions {

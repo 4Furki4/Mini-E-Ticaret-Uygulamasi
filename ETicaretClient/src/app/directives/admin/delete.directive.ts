@@ -34,7 +34,7 @@ export class DeleteDirective {
     this.dialogService.openDialog({
       componentType: DeleteDialogComponent,
       data: DeleteDialogResponse.Yes,
-      deleteApproveCallBack: async () => {
+      afterClosed: async () => {
         const td: HTMLTableCellElement = this.elementRef.nativeElement as HTMLTableCellElement;
         const request: Observable<any> = this.httpClient.delete({
           controller: this.controller,

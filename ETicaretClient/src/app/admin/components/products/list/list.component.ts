@@ -5,8 +5,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
 import { List } from 'src/app/Contracts/List';
 import { ListProduct } from 'src/app/Contracts/list-product';
+import { SelectProductImageDialogComponent, SelectProductImageDialogResponse } from 'src/app/dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import { AlertifyService, AlertType, Position } from 'src/app/services/admin/alertify/alertify.service';
 import { ProductService } from 'src/app/services/admin/models/product.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 
 @Component({
   selector: 'app-list',
@@ -14,11 +16,11 @@ import { ProductService } from 'src/app/services/admin/models/product.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent extends BaseComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate', 'delete', 'edit'];
+  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate', 'delete', 'edit', 'photos'];
   dataSource!: MatTableDataSource<ListProduct>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productService: ProductService, private alertify: AlertifyService, spinner: NgxSpinnerService) {
+  constructor(private productService: ProductService, private alertify: AlertifyService, spinner: NgxSpinnerService, private dialogService: DialogService) {
     super(spinner);
   }
   async getProducts() {
@@ -39,6 +41,16 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
   async ngOnInit(): Promise<void> {
     await this.getProducts();
+  }
+
+  addProductImages(id: string) {
+    this.dialogService.openDialog({
+      componentType: SelectProductImageDialogComponent,
+      data: id,
+      options: {
+        width: "100%",
+      }
+    })
   }
 
 }

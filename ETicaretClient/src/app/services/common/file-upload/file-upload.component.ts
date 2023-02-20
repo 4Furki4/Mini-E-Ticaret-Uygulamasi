@@ -36,7 +36,7 @@ export class FileUploadComponent extends BaseComponent {
     this.dialogService.openDialog({
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogResponse.Yes,
-      deleteApproveCallBack: () => {
+      afterClosed: () => {
         this.showSpinner(SpinnerTypes.Ball8Bits)
         this.httpClientService.post({
           controller: this.options.controller,

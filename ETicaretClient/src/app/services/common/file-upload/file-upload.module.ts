@@ -19,8 +19,8 @@ import { DialogService } from '../dialog.service';
   exports: [
     FileUploadComponent
   ],
-  providers: [
-    { provide: DialogService }
-  ]
+  // providers: [
+  //   { provide: DialogService }
+  // ]
 })
 export class FileUploadModule { }
