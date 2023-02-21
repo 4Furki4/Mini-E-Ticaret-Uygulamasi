@@ -24,7 +24,8 @@ namespace ETicaretAPI.API.Controllers
         readonly IProductImageCommandRepository productImageCommandRepository;
         readonly IInvoiceFileCommandRepository invoiceFileCommandRepository;
         readonly IStorageService storageService;
-        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment, IProductImageCommandRepository productImageCommandRepository, IInvoiceFileCommandRepository invoiceFileCommandRepository, IStorageService storageService)
+        readonly IConfiguration configuration;
+        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment, IProductImageCommandRepository productImageCommandRepository, IInvoiceFileCommandRepository invoiceFileCommandRepository, IStorageService storageService, IConfiguration configuration)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
@@ -33,6 +34,7 @@ namespace ETicaretAPI.API.Controllers
             this.productImageCommandRepository = productImageCommandRepository;
             this.invoiceFileCommandRepository = invoiceFileCommandRepository;
             this.storageService = storageService;
+            this.configuration = configuration;
         }
         [HttpGet]
         public IActionResult Get([FromQuery] Pagination pagination)
@@ -140,7 +142,7 @@ namespace ETicaretAPI.API.Controllers
             if (product is not null)
                 return Ok(product.ProductImageFiles.Select(p => new
                 {
-                    path = p.Path,
+                    path = $"{configuration["BaseStorageUrl"]}/{p.Path}",
                     fileName = p.FileName
                 }));
             else
