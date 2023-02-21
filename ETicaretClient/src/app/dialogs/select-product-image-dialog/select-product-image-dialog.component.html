@@ -1,6 +1,33 @@
 <h2 mat-dialog-title>Görsel Yükle</h2>
 <mat-dialog-content class="mat-typography">
     <app-file-upload [options]="options"></app-file-upload>
+
+
+
+    <div style="display: flex; flex-wrap: wrap; padding: auto;">
+        <mat-card class="product-card" *ngFor="let image of imageList">
+            <mat-card-header>
+                <!-- header -->
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <!-- content -->
+            </mat-card-content>
+            <mat-card-actions>
+                <div style="margin: auto;">
+                    <button mat-flat-button color="warn">DELETE</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+
+
+
+
+
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>

@@ -49,6 +49,7 @@ export class ListComponent extends BaseComponent implements OnInit {
       data: id,
       options: {
         width: "100%",
+        height: "85%",
       }
     })
   }

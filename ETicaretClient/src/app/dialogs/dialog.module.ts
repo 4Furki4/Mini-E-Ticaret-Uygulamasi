@@ -7,7 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from '../services/common/dialog.service';
 import { SelectProductImageDialogComponent } from './select-product-image-dialog/select-product-image-dialog.component';
 import { FileUploadModule } from '../services/common/file-upload/file-upload.module';
-import { FileUploadComponent } from '../services/common/file-upload/file-upload.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -19,8 +19,7 @@ import { FileUploadComponent } from '../services/common/file-upload/file-upload.
   ],
   imports: [
     CommonModule,
-    MatButtonModule,
-    MatDialogModule,
+    MatButtonModule, MatDialogModule, MatCardModule,
     FileUploadModule
   ],
   exports: [
