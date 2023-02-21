@@ -31,5 +31,5 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
 }
 
 export enum SelectProductImageDialogResponse {
-  Close
+  Close = 0
 }

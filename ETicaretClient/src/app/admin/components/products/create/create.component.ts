@@ -14,12 +14,6 @@ import { FileUploadOptions } from 'src/app/services/common/file-upload/file-uplo
 export class CreateComponent extends BaseComponent implements OnInit {
 
   @Output() CreatedProduct: EventEmitter<CreateProduct> = new EventEmitter();
-  FileUploadOptions: Partial<FileUploadOptions> = {
-    controller: "Products",
-    action: "Upload",
-    explanation: "Sürükleyerek veya seçerek ürün resmi ekleyiniz.",
-    isAdminSide: true
-  }
   constructor(spinner: NgxSpinnerService, private createService: ProductService, private alertify: AlertifyService) {
     super(spinner);
   }

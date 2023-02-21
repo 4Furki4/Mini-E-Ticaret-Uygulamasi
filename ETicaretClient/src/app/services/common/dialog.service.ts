@@ -16,7 +16,8 @@ export class DialogService {
       data: dialogParameters.data
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result == dialogParameters.data)
+      debugger;
+      if (result)
         dialogParameters.afterClosed();
     })
   }

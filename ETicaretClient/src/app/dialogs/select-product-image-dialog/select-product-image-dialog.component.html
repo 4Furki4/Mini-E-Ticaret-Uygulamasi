@@ -9,10 +9,9 @@
             <mat-card-header>
                 <!-- header -->
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                alt="Photo of a Shiba Inu">
+            <img mat-card-image [src]="image.path" style="height: 200px;">
             <mat-card-content>
-                <!-- content -->
+
             </mat-card-content>
             <mat-card-actions>
                 <div style="margin: auto;">
@@ -20,13 +19,8 @@
                 </div>
             </mat-card-actions>
         </mat-card>
+
     </div>
-
-
-
-
-
-
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
