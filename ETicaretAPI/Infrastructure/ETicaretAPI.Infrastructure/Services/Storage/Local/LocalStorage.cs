@@ -43,7 +43,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
                 return false;
             }
         }
-        public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection files)
+        public async Task<List<(string pathOrContainerName, string fileName)>> UploadAsync(string path, IFormFileCollection files)
         {
             string pathToUpload = Path.Combine(webHostEnvironment.WebRootPath, path);
             if (!Directory.Exists(pathToUpload))

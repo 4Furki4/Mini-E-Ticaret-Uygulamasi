@@ -39,19 +39,19 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
             return blobContainerClient.GetBlobs().Any(blob => blob.Name == fileName);
         }
 
-        public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection files)
+        public async Task<List<(string pathOrContainerName, string fileName)>> UploadAsync(string containerName, IFormFileCollection files)
         {
             blobContainerClient = blobServiceClient.GetBlobContainerClient(containerName);
             await blobContainerClient.CreateIfNotExistsAsync();
             await blobContainerClient.SetAccessPolicyAsync(PublicAccessType.BlobContainer);
 
-            List<(string fileName, string pathOrContainerName)> values = new();
+            List<(string pathOrContainerName, string fileName)> values = new();
             foreach (IFormFile file in files)
             {
                 string fileNewName = await FileRenameAsync(containerName, HasFiles, file.Name);
                 BlobClient blobClient = blobContainerClient.GetBlobClient(fileNewName);
                 await blobClient.UploadAsync(file.OpenReadStream());
-                values.Add((fileNewName, $"{containerName}/{fileNewName}"));
+                values.Add(($"{containerName}/{fileNewName}",fileNewName));
             }
             return values;
         }

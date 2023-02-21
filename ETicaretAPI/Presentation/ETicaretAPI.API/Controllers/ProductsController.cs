@@ -7,6 +7,7 @@ using ETicaretAPI.Infrastructure.Services;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO.Pipelines;
 
@@ -130,6 +131,20 @@ namespace ETicaretAPI.API.Controllers
             }).ToList());
             await productImageCommandRepository.SaveAsync();
             return Ok();
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Images(string id)
+        {
+            Product? product = await productQuery.Table.Include(t => t.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
+            if (product is not null)
+                return Ok(product.ProductImageFiles.Select(p => new
+                {
+                    path = p.Path,
+                    fileName = p.FileName
+                }));
+            else
+                return Ok();
         }
 
     }
