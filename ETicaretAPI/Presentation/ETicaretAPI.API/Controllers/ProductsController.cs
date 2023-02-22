@@ -138,7 +138,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Images(string id)
         {
-            Product? product = await productQuery.Table.Include(t => t.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
+            Product? product = await productQuery.Table.AsNoTracking().Include(t => t.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
             if (product is not null)
                 return Ok(product.ProductImageFiles.Select(p => new
                 {
@@ -148,6 +148,31 @@ namespace ETicaretAPI.API.Controllers
                 }));
             else
                 return Ok();
+        }
+
+        [HttpDelete("[action]/{Id}")]
+        public async Task<IActionResult> Images(string Id, [FromQuery] string imageId)
+        {
+            Product? product = await productQuery.Table.Include(p => p.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == Guid.Parse(Id));
+            if(product is not null)
+            {
+                ProductImageFile? productImageFile = product.ProductImageFiles.FirstOrDefault(p => p.Id == Guid.Parse(imageId));
+                if(productImageFile is not null)
+                {
+                    product.ProductImageFiles.Remove(productImageFile);
+                    await productCommand.SaveAsync();
+                    return Ok(new { message = "Image was deleted successfully." });
+                }
+                else
+                {
+                    return NotFound("Product found but its image not found");
+                }
+            }
+            else
+            {
+                return NotFound("Product not found");
+            }
+            
         }
 
     }
