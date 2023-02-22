@@ -1,17 +1,14 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
-using ETicaretAPI.Application.Features.Queries.GetAllProducts;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
 using ETicaretAPI.Application.ViewModels.Product;
 using ETicaretAPI.Domain.Entities;
-using ETicaretAPI.Infrastructure.Services;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.IO.Pipelines;
+using static ETicaretAPI.Application.Features.Queries.GetAllProducts;
 
 namespace ETicaretAPI.API.Controllers
 {
