@@ -143,7 +143,8 @@ namespace ETicaretAPI.API.Controllers
                 return Ok(product.ProductImageFiles.Select(p => new
                 {
                     path = $"{configuration["BaseStorageUrl"]}/{p.Path}",
-                    fileName = p.FileName
+                    fileName = p.FileName,
+                    id = p.Id.ToString()
                 }));
             else
                 return Ok();
