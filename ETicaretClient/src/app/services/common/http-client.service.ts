@@ -8,22 +8,22 @@ export class HttpClientService {
 
   constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  private url(requestParams: Partial<RequestParameters>): string {
+  private url(requestParams: Partial<RequestParameters>, id?: string): string {
 
     if (requestParams.fullEndpoint)
       return requestParams.fullEndpoint;
     else {
-      return `${requestParams.baseUrl ? requestParams.baseUrl : this.baseUrl}/${requestParams.controller}${requestParams.action ? `/${requestParams.action}` : ''}${requestParams.queryString ? `?${requestParams.queryString}` : ''}`;
+      return `${requestParams.baseUrl ? requestParams.baseUrl : this.baseUrl}/${requestParams.controller}${requestParams.action ? `/${requestParams.action}` : ''}${id ? `/${id}` : ''}${requestParams.queryString ? `?${requestParams.queryString}` : ''}`;
     }
   }
   get<T>(requestParams: Partial<RequestParameters>, id?: string): Observable<T> {
-    let url = `${this.url(requestParams)}${id ? `/${id}` : ``}`;
+    let url = this.url(requestParams, id);
     return this.httpClient.get<T>(url, { headers: requestParams.headers });
   }
 
 
   post<T>(requestParams: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
-    let url: string = `${this.url(requestParams)}`
+    let url: string = this.url(requestParams)
     return this.httpClient.post<T>(url, body, {
       headers: requestParams.headers
     });
@@ -31,14 +31,14 @@ export class HttpClientService {
 
 
   put<T>(requestParams: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
-    let url: string = `${this.url(requestParams)}`
+    let url: string = this.url(requestParams)
     return this.httpClient.put<T>(url, body, {
       headers: requestParams.headers
     });
   }
 
   delete(requestParams: Partial<RequestParameters>, id: string): Observable<any> {
-    let url: string = `${this.url(requestParams)}/${id}`
+    let url: string = this.url(requestParams, id);
     return this.httpClient.delete(url, {
       headers: requestParams.headers
     });

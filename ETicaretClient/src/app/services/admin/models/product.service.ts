@@ -61,4 +61,21 @@ export class ProductService {
     return await firstValueFrom(getObservable);
   }
 
+  async deleteImage(id: string, imageId: string, successCallBack?: () => void, errorCallBack?: () => void) {
+    const deletedObservable = this.httpClientService.delete({
+      controller: 'products',
+      action: 'images',
+      queryString: `imageId=${imageId}`,
+    }, id)
+    await firstValueFrom(deletedObservable).then(() => {
+      if (successCallBack) {
+        successCallBack();
+      }
+    }).catch(() => {
+      if (errorCallBack) {
+        errorCallBack();
+      }
+    });
+  }
+
 }
