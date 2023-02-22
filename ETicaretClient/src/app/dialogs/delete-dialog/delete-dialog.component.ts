@@ -17,6 +17,6 @@ export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent> {
 
 }
 export enum DeleteDialogResponse {
-  Yes,
-  No
+  No,
+  Yes
 }

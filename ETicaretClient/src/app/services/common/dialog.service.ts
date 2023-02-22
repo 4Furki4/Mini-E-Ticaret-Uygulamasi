@@ -10,9 +10,8 @@ export class DialogService {
   constructor(public dialog: MatDialog) { }
   openDialog(dialogParameters: Partial<DialogParameters>): void {
     const dialogRef = this.dialog.open(dialogParameters.componentType!, {
-      width: dialogParameters.options!.width,
-      height: dialogParameters.options!.height,
-      position: dialogParameters.options!.position,
+      width: dialogParameters.options?.width ?? '500px',
+      height: dialogParameters.options?.height ?? '250px',
       data: dialogParameters.data
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -26,10 +25,9 @@ export class DialogParameters {
   componentType !: ComponentType<any>;
   data !: any;
   afterClosed: any;
-  options !: Partial<DialogOptions>;
+  options?: Partial<DialogOptions>;
 }
 export class DialogOptions {
-  width?: string = '500px';
-  height?: string = '250px';
-  position?: DialogPosition
+  width?: string;
+  height?: string;
 }
