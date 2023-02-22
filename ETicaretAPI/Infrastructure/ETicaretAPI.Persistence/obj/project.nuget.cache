@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1bV+oF/fjYpx28ND2Kudrg+6ASDYF9XUtluq+XlqW3/cpigjvpItHc0PJhdYk+7CwF/J/gogSrykcYdSsLeEjw==",
+  "dgSpecHash": "/+FkydjCAgXERAsJJv4wFS0TvAlBzlYPN+3S2GqagaodVMlGROuahR4D93tDS7sasO4/vo8ah/d6BMPNDP1xzg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Infrastructure\\ETicaretAPI.Persistence\\ETicaretAPI.Persistence.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,9 @@
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.compression.lz4.streams\\1.2.6\\k4os.compression.lz4.streams.1.2.6.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr\\12.0.0\\mediatr.12.0.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr.contracts\\2.0.0\\mediatr.contracts.2.0.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",

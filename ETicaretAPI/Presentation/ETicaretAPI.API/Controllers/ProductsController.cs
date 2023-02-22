@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
+using ETicaretAPI.Application.Features.Queries.GetAllProducts;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
 using ETicaretAPI.Application.ViewModels.Product;
@@ -6,6 +7,7 @@ using ETicaretAPI.Domain.Entities;
 using ETicaretAPI.Infrastructure.Services;
 using FluentValidation;
 using FluentValidation.Results;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,7 +27,12 @@ namespace ETicaretAPI.API.Controllers
         readonly IInvoiceFileCommandRepository invoiceFileCommandRepository;
         readonly IStorageService storageService;
         readonly IConfiguration configuration;
-        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment, IProductImageCommandRepository productImageCommandRepository, IInvoiceFileCommandRepository invoiceFileCommandRepository, IStorageService storageService, IConfiguration configuration)
+
+
+        readonly IMediator mediator;
+
+
+        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment, IProductImageCommandRepository productImageCommandRepository, IInvoiceFileCommandRepository invoiceFileCommandRepository, IStorageService storageService, IConfiguration configuration, IMediator mediator)
         {
             this.productCommand = productCommand;
             this.productQuery = productQuery;
@@ -35,26 +42,14 @@ namespace ETicaretAPI.API.Controllers
             this.invoiceFileCommandRepository = invoiceFileCommandRepository;
             this.storageService = storageService;
             this.configuration = configuration;
+            this.mediator = mediator;
         }
         [HttpGet]
-        public IActionResult Get([FromQuery] Pagination pagination)
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
-           var totalSize = productQuery.GetAll(false).Count();
-           var products = productQuery.GetAll(false)
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Name,
-                    p.Price,
-                    p.Stock,
-                    p.CreatedDate,
-                    p.UpdatedDate
-                }).Skip(pagination.Size * pagination.Page).Take(pagination.Size).ToList();
-            return Ok(new
-            {
-                products,
-                totalSize
-            });
+            GetAllProductsQueryRequest request = new GetAllProductsQueryRequest(pagination);
+            GetAllProductsQueryResponse result = await mediator.Send(request);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lyir3SP8lKaz3+pheFzoEbFN81ivqMnizuW0cSQzdiKURzp93nuC5HSCxNBrIIEuoEQjLr4qKKmbY7Y4V5wosQ==",
+  "dgSpecHash": "3an8nWEqlJMbhezrfvRQhGz/sV3nzPME+e3Nlq1ZujrpVARV5JeGYlHpgTPCMbGx/beSpYy9dx05GFVk9hag1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\ETicaretAPI.API.csproj",
   "expectedPackageFiles": [
@@ -16,8 +16,10 @@
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.compression.lz4.streams\\1.2.6\\k4os.compression.lz4.streams.1.2.6.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr\\12.0.0\\mediatr.12.0.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr.contracts\\2.0.0\\mediatr.contracts.2.0.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
-    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",

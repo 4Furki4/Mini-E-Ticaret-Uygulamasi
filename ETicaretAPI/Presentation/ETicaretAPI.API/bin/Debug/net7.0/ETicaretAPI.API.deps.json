@@ -21,7 +21,7 @@
       },
       "Azure.Core/1.25.0": {
         "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Microsoft.Bcl.AsyncInterfaces": "7.0.0",
           "System.Diagnostics.DiagnosticSource": "4.6.0",
           "System.Memory.Data": "1.0.2",
           "System.Numerics.Vectors": "4.5.0",
@@ -161,6 +161,27 @@
           }
         }
       },
+      "MediatR/12.0.0": {
+        "dependencies": {
+          "MediatR.Contracts": "2.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.0.0"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.0": {
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -172,11 +193,11 @@
           }
         }
       },
-      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+      "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "4.700.20.21406"
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
           }
         }
       },
@@ -759,6 +780,7 @@
           "FluentValidation": "11.4.0",
           "FluentValidation.AspNetCore": "11.2.2",
           "FluentValidation.DependencyInjectionExtensions": "11.4.0",
+          "MediatR": "12.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.2"
         },
         "runtime": {
@@ -886,6 +908,20 @@
       "path": "k4os.hash.xxhash/1.0.6",
       "hashPath": "k4os.hash.xxhash.1.0.6.nupkg.sha512"
     },
+    "MediatR/12.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1XodBmbn3I1y7T0iSCSl9sQqHOx/BF63GqWb7mtMQja9ESUk7QrcmzzJFOGie9ruSC7A/oaW/8TwaJLuA9RQRw==",
+      "path": "mediatr/12.0.0",
+      "hashPath": "mediatr.12.0.0.nupkg.sha512"
+    },
+    "MediatR.Contracts/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DKkwHP3xb2BVeBQQedNvg7eMKvQU33H3SozHsc+drjDSCcnVb/ov4tSwdRAyLv74Nb0IUl2evVR9OQuqurGqpA==",
+      "path": "mediatr.contracts/2.0.0",
+      "hashPath": "mediatr.contracts.2.0.0.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.OpenApi/7.0.0": {
       "type": "package",
       "serviceable": true,
@@ -893,12 +929,12 @@
       "path": "microsoft.aspnetcore.openapi/7.0.0",
       "hashPath": "microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512"
     },
-    "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+    "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
-      "path": "microsoft.bcl.asyncinterfaces/1.1.1",
-      "hashPath": "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512"
+      "sha512": "sha512-3aeMZ1N0lJoSyzqiP03hqemtb1BijhsJADdobn/4nsMJ8V1H+CrpuduUe4hlRdx+ikBQju1VGjMD1GJ3Sk05Eg==",
+      "path": "microsoft.bcl.asyncinterfaces/7.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",

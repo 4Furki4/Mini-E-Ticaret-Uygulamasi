@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lfnPMAUlzvo/RDJ/NT72aPri6ByMDE526Y7+UBri5rQZn7BnJ0auMKCQRoJ8/jubjtwsijPjqt7rBoAeTNYbNg==",
+  "dgSpecHash": "n1pzJbgksxhruWIryAv/gPO/xugDS0uzeEi/iEz03IMbpC8SscvLFeJg4DDgTDfUJbd2huKl26YOMNiSr+XmRA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Furkan Cengiz\\Source\\Repos\\4Furki4\\Mini-E-Ticaret-Uygulamasi\\ETicaretAPI\\Infrastructure\\ETicaretAPI.Infrastructure\\ETicaretAPI.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,9 @@
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",
-    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr\\12.0.0\\mediatr.12.0.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\mediatr.contracts\\2.0.0\\mediatr.contracts.2.0.0.nupkg.sha512",
+    "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
     "C:\\Users\\Furkan Cengiz\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.2\\microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512",
