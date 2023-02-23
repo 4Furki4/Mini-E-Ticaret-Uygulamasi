@@ -84,12 +84,9 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
-            bool isDeleted = await productCommand.RemoveAsync(id);
-            await productCommand.SaveAsync();
-            if (isDeleted)
-                return Ok(new {message = "Deleted" });
-            else
-                return NotFound(new { message = "The product with the given id doesn't exist." });
+            DeleteProductCommandRequest request = new DeleteProductCommandRequest(id);
+            await mediator.Send(request);
+            return Ok();
         }
 
         [HttpPost("[action]")]
