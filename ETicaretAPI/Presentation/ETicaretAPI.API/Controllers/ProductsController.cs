@@ -75,15 +75,8 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> Put(PutProductViewModel viewModel)
         {
-            Product product = await productQuery.GetByIdAsync(viewModel.Id);
-
-            product.Stock = viewModel.Stock;
-
-            product.Price = (long) viewModel.Price;
-
-            product.Name = viewModel.Name;
-
-            await productCommand.SaveAsync();
+            UpdateProductCommandRequest request = new UpdateProductCommandRequest(viewModel);
+            await mediator.Send(request);
             return Ok(new { message = "Updated!"});
         }
 
