@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
+using ETicaretAPI.Application.Features.Commands.ProductCommands;
 using ETicaretAPI.Application.Features.Queries.ProductQueries;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
@@ -9,6 +10,7 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using static ETicaretAPI.Application.Features.Queries.ProductQueries.GetAllProducts;
 
 namespace ETicaretAPI.API.Controllers
@@ -61,23 +63,11 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post (CreateProductViewModel viewModel)
         {
-            ValidationResult validationResult = await validator.ValidateAsync(viewModel);
-            
-            if (ModelState.IsValid)
-            {
 
-            }
-            Product product = new()
-            {
-                Stock = viewModel.Stock,
-                Price = (long)viewModel.Price,
-                Name = viewModel.Name,
-            };
+            CreateProductCommandRequest request = new CreateProductCommandRequest(viewModel);
+            await mediator.Send(request);
 
-            var isCreated = await productCommand.AddAsync(product);
-
-            await productCommand.SaveAsync();
-            return CreatedAtAction(nameof(Post), product); 
+            return StatusCode( (int) HttpStatusCode.Created);
         }
 
 
