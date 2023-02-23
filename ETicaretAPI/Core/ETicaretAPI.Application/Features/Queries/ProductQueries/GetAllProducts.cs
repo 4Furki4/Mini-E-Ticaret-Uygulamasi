@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Queries
+namespace ETicaretAPI.Application.Features.Queries.ProductQueries
 {
     public class GetAllProducts
     {
@@ -40,14 +40,14 @@ namespace ETicaretAPI.Application.Features.Queries
         }
         public class GetAllProductsQueryRequest : IRequest<GetAllProductsQueryResponse>
         {
-            public Pagination Pagination{ get; set; }
+            public Pagination Pagination { get; set; }
 
             public GetAllProductsQueryRequest(Pagination pagination)
             {
                 Pagination = pagination;
             }
         }
-        
+
         public class GetAllProductsQueryResponse
         {
             public object Products { get; set; }

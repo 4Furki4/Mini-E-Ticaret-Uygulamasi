@@ -2,9 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\ETicaretAPI",
+    "\\ETicaretAPI\\Core",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features\\Queries",
     "\\ETicaretAPI\\Presentation",
     "\\ETicaretAPI\\Presentation\\ETicaretAPI.API"
   ],
-  "SelectedNode": "\\ETicaretAPI\\ETicaretAPI.sln",
+  "SelectedNode": "\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

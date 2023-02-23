@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
+using ETicaretAPI.Application.Features.Queries.ProductQueries;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
 using ETicaretAPI.Application.ViewModels.Product;
@@ -8,7 +9,7 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static ETicaretAPI.Application.Features.Queries.GetAllProducts;
+using static ETicaretAPI.Application.Features.Queries.ProductQueries.GetAllProducts;
 
 namespace ETicaretAPI.API.Controllers
 {
@@ -53,9 +54,9 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> GetById(string id) 
         {
-
-            var product = await productQuery.GetByIdAsync(id, false);
-            return Ok(product);
+            var request = new GetProductByIdQueryRequest(id);
+            var result = await mediator.Send(request);
+            return Ok(result);
         }
         [HttpPost]
         public async Task<IActionResult> Post (CreateProductViewModel viewModel)
