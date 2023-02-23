@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Commands.ProductCommands
+namespace ETicaretAPI.Application.Features.Commands.ProductImageFileCommands
 {
     public class UploadImageCommandRequest : IRequest<UploadImageCommandResponse>
     {
@@ -42,7 +42,7 @@ namespace ETicaretAPI.Application.Features.Commands.ProductCommands
         {
             List<(string pathOrContainerName, string fileName)> values = await storageService.UploadAsync(request.PathOrContainerName, request.FormFiles);
             Product product = await productQuery.GetByIdAsync(request.Id);
-            if(product is not null)
+            if (product is not null)
             {
                 await productImageCommandRepository.AddRangeAsync(values.Select(val => new ProductImageFile()
                 {
@@ -65,9 +65,9 @@ namespace ETicaretAPI.Application.Features.Commands.ProductCommands
                     IsUploaded = false
                 };
             }
-            
+
         }
-        
+
     }
 
     public class UploadImageCommandResponse

@@ -1,5 +1,7 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
 using ETicaretAPI.Application.Features.Commands.ProductCommands;
+using ETicaretAPI.Application.Features.Commands.ProductImageFileCommands;
+using ETicaretAPI.Application.Features.Queries.ProductImageFileQueries;
 using ETicaretAPI.Application.Features.Queries.ProductQueries;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
@@ -110,16 +112,11 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Images(string id)
         {
-            Product? product = await productQuery.Table.AsNoTracking().Include(t => t.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
-            if (product is not null)
-                return Ok(product.ProductImageFiles.Select(p => new
-                {
-                    path = $"{configuration["BaseStorageUrl"]}/{p.Path}",
-                    fileName = p.FileName,
-                    id = p.Id.ToString()
-                }));
-            else
-                return Ok();
+            GetImageByIdQueryRequest request = new GetImageByIdQueryRequest(id);
+            List<GetImageByIdQueryResponse> response =  await mediator.Send(request);
+            
+            if (response is not null) return Ok(response);
+            else return BadRequest(new { message = "Product with the given id is not found !" });
         }
 
         [HttpDelete("[action]/{Id}")]
