@@ -93,19 +93,18 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> Upload(string id)
         {
+            IFormFileCollection formFiles = Request.Form.Files;
+            UploadImageCommandRequest request = new
+                (
+                    id: id,
+                    pathOrContainerName: "photo-images",
+                    formFiles: formFiles
+                );
+            UploadImageCommandResponse response =  await mediator.Send(request);
 
-            Product product = await productQuery.GetByIdAsync(id);
-            
-            var values = await storageService.UploadAsync("photo-images", Request.Form.Files);
-            await productImageCommandRepository.AddRangeAsync(values.Select(val => new ProductImageFile()
-            {
-                FileName = val.fileName,
-                Path = val.pathOrContainerName,
-                Storage = storageService.StorageType,
-                Products = new List<Product>() { product}
-            }).ToList());
-            await productImageCommandRepository.SaveAsync();
-            return Ok();
+
+            if (response.IsUploaded) return Ok();
+            else return BadRequest(new { message = "Product with the given id is not found !"});
         }
 
         [HttpGet("[action]/{id}")]
