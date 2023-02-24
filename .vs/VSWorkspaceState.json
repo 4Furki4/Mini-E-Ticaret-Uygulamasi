@@ -9,6 +9,6 @@
     "\\ETicaretAPI\\Presentation",
     "\\ETicaretAPI\\Presentation\\ETicaretAPI.API"
   ],
-  "SelectedNode": "\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\Program.cs",
+  "SelectedNode": "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features\\Queries\\ProductQueries",
   "PreviewInSolutionExplorer": false
 }

@@ -21,92 +21,65 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductCommandRepository productCommand;
-        private readonly IProductQueryRepository productQuery;
-        private readonly IValidator<CreateProductViewModel> validator;
-        private readonly IWebHostEnvironment webHostEnvironment;
-        readonly IProductImageCommandRepository productImageCommandRepository;
-        readonly IInvoiceFileCommandRepository invoiceFileCommandRepository;
-        readonly IStorageService storageService;
-        readonly IConfiguration configuration;
-
-
         readonly IMediator mediator;
-
-
-        public ProductsController(IProductCommandRepository productCommand, IProductQueryRepository productQuery, IValidator<CreateProductViewModel> validator, IWebHostEnvironment webHostEnvironment, IProductImageCommandRepository productImageCommandRepository, IInvoiceFileCommandRepository invoiceFileCommandRepository, IStorageService storageService, IConfiguration configuration, IMediator mediator)
+        public ProductsController(IMediator mediator)
         {
-            this.productCommand = productCommand;
-            this.productQuery = productQuery;
-            this.validator = validator;
-            this.webHostEnvironment = webHostEnvironment;
-            this.productImageCommandRepository = productImageCommandRepository;
-            this.invoiceFileCommandRepository = invoiceFileCommandRepository;
-            this.storageService = storageService;
-            this.configuration = configuration;
             this.mediator = mediator;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
-            GetAllProductsQueryRequest request = new GetAllProductsQueryRequest(pagination);
+            GetAllProductsQueryRequest request = new(pagination);
             GetAllProductsQueryResponse result = await mediator.Send(request);
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-
         public async Task<IActionResult> GetById(string id) 
         {
-            var request = new GetProductByIdQueryRequest(id);
+            GetProductByIdQueryRequest request = new(id);
             var result = await mediator.Send(request);
             return Ok(result);
         }
+
         [HttpPost]
         public async Task<IActionResult> Post (CreateProductViewModel viewModel)
         {
 
-            CreateProductCommandRequest request = new CreateProductCommandRequest(viewModel);
+            CreateProductCommandRequest request = new(viewModel);
             await mediator.Send(request);
-
             return StatusCode( (int) HttpStatusCode.Created);
         }
 
-
         [HttpPut]
-
         public async Task<IActionResult> Put(PutProductViewModel viewModel)
         {
-            UpdateProductCommandRequest request = new UpdateProductCommandRequest(viewModel);
+            UpdateProductCommandRequest request = new(viewModel);
             await mediator.Send(request);
             return Ok(new { message = "Updated!"});
         }
 
         [HttpDelete("{id}")]
-
         public async Task<IActionResult> Delete(string id)
         {
-            DeleteProductCommandRequest request = new DeleteProductCommandRequest(id);
+            DeleteProductCommandRequest request = new(id);
             await mediator.Send(request);
             return Ok();
         }
 
         [HttpPost("[action]")]
-
         public async Task<IActionResult> Upload(string id)
         {
             IFormFileCollection formFiles = Request.Form.Files;
-            UploadImageCommandRequest request = new
-                (
-                    id: id,
-                    pathOrContainerName: "photo-images",
-                    formFiles: formFiles
-                );
+            UploadImageCommandRequest request = new(id,"photo-images",formFiles);
             UploadImageCommandResponse response =  await mediator.Send(request);
 
+            if (response.IsUploaded)
+                return Ok();
 
-            if (response.IsUploaded) return Ok();
-            else return BadRequest(new { message = "Product with the given id is not found !"});
+            else
+                return BadRequest(new { message = "Product with the given id is not found !"});
         }
 
         [HttpGet("[action]/{id}")]
@@ -115,8 +88,11 @@ namespace ETicaretAPI.API.Controllers
             GetImageByIdQueryRequest request = new GetImageByIdQueryRequest(id);
             List<GetImageByIdQueryResponse> response =  await mediator.Send(request);
             
-            if (response is not null) return Ok(response);
-            else return BadRequest(new { message = "Product with the given id is not found !" });
+            if (response is not null)
+                return Ok(response);
+
+            else 
+                return BadRequest(new { message = "Product with the given id is not found !" });
         }
 
         [HttpDelete("[action]/{Id}")]
@@ -125,11 +101,14 @@ namespace ETicaretAPI.API.Controllers
             DeleteImageCommandRequest request = new(Id, imageId);
             DeleteImageCommandResponse response = await mediator.Send(request);
 
-            if (response.HasProduct && response.HasProductImage) return Ok();
+            if (response.HasProduct && response.HasProductImage) 
+                return Ok();
 
-            else if (response.HasProduct!) return BadRequest(new { message = "Product with the given id is not found !" });
+            else if (response.HasProduct!) 
+                return BadRequest(new { message = "Product with the given id is not found !" });
 
-            else return BadRequest(new { message = "ProductImage with the given id is not found !" });
+            else 
+                return BadRequest(new { message = "ProductImage with the given id is not found !" });
         }
 
     }
