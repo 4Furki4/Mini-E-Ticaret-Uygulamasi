@@ -27,12 +27,10 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFileCommands
     {
         readonly IProductQueryRepository productQuery;
         readonly IProductCommandRepository productCommand;
-        readonly IProductImageCommandRepository productImageCommand;
 
-        public DeleteImageCommandRequestHandler(IProductQueryRepository productQuery, IProductImageCommandRepository productImageCommand, IProductCommandRepository productCommand)
+        public DeleteImageCommandRequestHandler(IProductQueryRepository productQuery, IProductCommandRepository productCommand)
         {
             this.productQuery = productQuery;
-            this.productImageCommand = productImageCommand;
             this.productCommand = productCommand;
         }
 
@@ -44,13 +42,13 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFileCommands
             {
                 response.HasProduct = true;
                 ProductImageFile? productImageFile = product.ProductImageFiles.FirstOrDefault(p => p.Id == Guid.Parse(request.ImageId));
+
                 if(productImageFile != null)
                 {
                     response.HasProductImage = true;
                     product.ProductImageFiles.Remove(productImageFile);
                     await productCommand.SaveAsync();
                 }
-                
             }
             return response;
         }
