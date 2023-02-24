@@ -16,7 +16,8 @@ const routes: Routes = [
   // UI LAYER
   { path: '', component: HomeComponent, },
   { path: 'basket', loadChildren: () => import('./ui/components/baskets/baskets.module').then(m => m.BasketsModule) },
-  { path: 'products', loadChildren: () => import('./ui/components/products/products.module').then(m => m.ProductsModule) }
+  { path: 'products', loadChildren: () => import('./ui/components/products/products.module').then(m => m.ProductsModule) },
+  { path: 'register', loadChildren: () => import('./ui/components/register/register.module').then(m => m.RegisterModule) },
 ];
 
 @NgModule({
