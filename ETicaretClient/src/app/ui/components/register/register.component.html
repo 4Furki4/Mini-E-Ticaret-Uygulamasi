@@ -1,1 +1,67 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Ad ve Soyad</mat-label>
+                    <input matInput formControlName="fullName" type="text">
+                    <mat-error *ngIf="fullName?.errors?.['required'] && (form.touched || form.dirty)">
+                        Ad ve Soyad boş bırakılamaz.
+                    </mat-error>
+                    <mat-error *ngIf="fullName?.errors?.['maxlength'] && (form.touched || form.dirty)">
+                        Ad ve Soyad en fazla 50 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                    <mat-error *ngIf="fullName?.errors?.['minlength'] && (form.touched || form.dirty)">
+                        Ad ve Soyad en az 3 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Kullanıcı Adı</mat-label>
+                    <input matInput formControlName="userName" type="text">
+                    <mat-error *ngIf="userName?.errors?.['required'] && (form.touched || form.dirty)">
+                        Kullanıcı adı boş bırakılamaz.
+                    </mat-error>
+                    <mat-error *ngIf="userName?.errors?.['minlength'] && (form.touched || form.dirty)">
+                        Kullanıcı adı en az 3 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                    <mat-error *ngIf="userName?.errors?.['maxlength'] && (form.touched || form.dirty)">
+                        Kullanıcı adı en fazla 30 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>E-Posta</mat-label>
+                    <input matInput formControlName="email" type="text">
+                    <mat-error *ngIf="email?.errors?.['required'] && (form.touched || form.dirty)">
+                        E-Posta alanı boş bırakılamaz.
+                    </mat-error>
+                    <mat-error *ngIf="email?.errors?.['email'] && (form.touched || form.dirty)">
+                        Lütfen geçerli bir e-posta adresi giriniz.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Şifre</mat-label>
+                    <input matInput
+                        placeholder="En az 8 karakter, bir büyük harf, bir küçük harf, bir sayı ve bir özel karakter içermelidir."
+                        formControlName="password" type="text">
+                    <mat-error *ngIf="password?.errors?.['required'] && (form.touched || form.dirty)">
+                        Şifre alanı boş bırakılamaz.
+                    </mat-error>
+                    <mat-error *ngIf="password?.errors?.['pattern'] && (form.touched || form.dirty)">
+                        Zayıf şifre, lütfen sembol, sayı ve büyük harf içeren bir şifre giriniz.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Şifre Tekrar</mat-label>
+                    <input matInput formControlName="confirmPassword" type="text">
+                    <mat-error *ngIf="confirmPassword?.errors?.['required'] && (form.touched || form.dirty)">
+                        Şifre Tekrar alanı boş bırakılamaz.
+                    </mat-error>
+                </mat-form-field>
+                <div class="button-div"><button type="submit" class="btn btn-outline-primary px-4">Kaydol</button></div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

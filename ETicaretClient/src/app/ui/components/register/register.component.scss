@@ -1,0 +1,19 @@
+.form-group {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.form-group>mat-form-field {
+    margin-top: 20px;
+}
+
+.form-group>mat-form-field mat-error {
+    text-align: center !important;
+}
+
+.button-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
