@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { User } from 'src/app/entities/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
     return this.form.get('confirmPassword');
   }
   submitted: boolean = false;
-  onSubmit(value: FormControl[], ngForm: FormGroupDirective) {
+  onSubmit(value: User, ngForm: FormGroupDirective) {
     this.submitted = true;
     if (!this.form.valid) {
       return;
