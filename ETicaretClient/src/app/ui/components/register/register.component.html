@@ -32,7 +32,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>E-Posta</mat-label>
-                    <input matInput formControlName="email" type="text">
+                    <input matInput formControlName="email" type="email">
                     <mat-error *ngIf="email?.errors?.['required'] && (form.touched || form.dirty)">
                         E-Posta alanı boş bırakılamaz.
                     </mat-error>
@@ -44,7 +44,7 @@
                     <mat-label>Şifre</mat-label>
                     <input matInput
                         placeholder="En az 8 karakter, bir büyük harf, bir küçük harf, bir sayı ve bir özel karakter içermelidir."
-                        formControlName="password" type="text">
+                        formControlName="password" type="password">
                     <mat-error *ngIf="password?.errors?.['required'] && (form.touched || form.dirty)">
                         Şifre alanı boş bırakılamaz.
                     </mat-error>
@@ -55,7 +55,7 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Şifre Tekrar</mat-label>
-                    <input matInput formControlName="confirmPassword" type="text">
+                    <input matInput formControlName="confirmPassword" type="password">
                     <mat-error *ngIf="confirmPassword?.errors?.['required'] && (form.touched || form.dirty)">
                         Şifre Tekrar alanı boş bırakılamaz.
                     </mat-error>
