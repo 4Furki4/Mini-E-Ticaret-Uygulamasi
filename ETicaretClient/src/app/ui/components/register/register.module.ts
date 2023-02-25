@@ -10,8 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    RegisterComponent
-  ],
+    RegisterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
