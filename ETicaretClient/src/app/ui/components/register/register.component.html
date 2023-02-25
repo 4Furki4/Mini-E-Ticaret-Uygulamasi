@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container shadow mt-5 p-4 border border-dark">
     <div class="row mt-4">
         <div class="col-2"></div>
         <div class="col-8">
-            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-group">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, formDirective)" class="form-group"
+                #formDirective="ngForm">
                 <mat-form-field appearance="outline">
                     <mat-label>Ad ve Soyad</mat-label>
                     <input matInput formControlName="fullName" type="text">
@@ -59,7 +60,10 @@
                         Şifre Tekrar alanı boş bırakılamaz.
                     </mat-error>
                 </mat-form-field>
-                <div class="button-div"><button type="submit" class="btn btn-outline-primary px-4">Kaydol</button></div>
+                <div class="button-div">
+                    <button [disabled]="form.invalid" type="submit"
+                        class="btn btn-outline-success btn-lg px-5">Kaydol</button>
+                </div>
             </form>
         </div>
         <div class="col-2"></div>
