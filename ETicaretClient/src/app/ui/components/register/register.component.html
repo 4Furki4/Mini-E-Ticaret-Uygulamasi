@@ -1,5 +1,3 @@
-{{form!.errors | json}}
-
 <div class="container shadow mt-5 p-4 border border-dark">
     <div class="row mt-4">
         <div class="col-2"></div>
@@ -23,6 +21,7 @@
                         Lütfen soyad da giriniz
                     </mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="outline">
                     <mat-label>Kullanıcı Adı</mat-label>
                     <input matInput formControlName="userName" type="text">
@@ -36,6 +35,7 @@
                         Kullanıcı adı en fazla 30 karakter uzunluğunda olmalıdır.
                     </mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="outline">
                     <mat-label>E-Posta</mat-label>
                     <input matInput formControlName="email" type="email">
@@ -46,6 +46,7 @@
                         Lütfen geçerli bir e-posta adresi giriniz.
                     </mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="outline">
                     <mat-label>Şifre</mat-label>
                     <input matInput
@@ -76,5 +77,3 @@
         <div class="col-2"></div>
     </div>
 </div>
-<!-- (change)="onPasswordChange()"
-(change)="onPasswordChange()" -->

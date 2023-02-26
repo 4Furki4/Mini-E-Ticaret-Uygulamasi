@@ -44,12 +44,15 @@ export class RegisterComponent implements OnInit {
       return;
     }
     else {
-      this.form.reset();
+      debugger
+      console.log(value);
       ngForm.resetForm();
+      this.form.reset();
     }
   }
   onPasswordChange() {
     this.confirmPassword?.valueChanges.subscribe((value) => {
+
       if (this.confirmPassword?.value == this.password?.value) {
         this.confirmPassword?.setErrors(null);
       } else {
@@ -62,6 +65,9 @@ export function nameValidation(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     let name: string = control?.value;
     let arr = name?.split(' ');
-    return arr[1]?.length > 2 ? null : { nameError: true }
+    if (arr)
+      return arr[1]?.length ?? 0 > 2 ? null : { nameError: true }
+    else
+      return null;
   }
 }
