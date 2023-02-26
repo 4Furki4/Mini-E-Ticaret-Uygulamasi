@@ -1,0 +1,40 @@
+<div class="container shadow mt-5 p-4 border border-dark">
+    <div class="row mt-4">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, formDirective)" class="form-group"
+                #formDirective="ngForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Kullanıcı Adı</mat-label>
+                    <input matInput formControlName="userName" type="text">
+                    <mat-error *ngIf="userName?.errors?.['required'] && (form.touched || form.dirty)">
+                        Kullanıcı adı boş bırakılamaz.
+                    </mat-error>
+                    <mat-error *ngIf="userName?.errors?.['minlength'] && (form.touched || form.dirty)">
+                        Kullanıcı adı en az 3 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                    <mat-error *ngIf="userName?.errors?.['maxlength'] && (form.touched || form.dirty)">
+                        Kullanıcı adı en fazla 30 karakter uzunluğunda olmalıdır.
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Şifre</mat-label>
+                    <input matInput
+                        placeholder="En az 8 karakter, bir büyük harf, bir küçük harf, bir sayı ve bir özel karakter içermelidir."
+                        formControlName="password" type="password">
+                    <mat-error *ngIf="password?.errors?.['required'] && (form.touched || form.dirty)">
+                        Şifre alanı boş bırakılamaz.
+                    </mat-error>
+                </mat-form-field>
+                <div class="button-div">
+                    <button [disabled]="form.invalid" type="submit" class="btn btn-outline-success btn-lg px-5">
+                        Kaydol
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
