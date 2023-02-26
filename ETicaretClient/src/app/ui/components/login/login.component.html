@@ -21,9 +21,7 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Şifre</mat-label>
-                    <input matInput
-                        placeholder="En az 8 karakter, bir büyük harf, bir küçük harf, bir sayı ve bir özel karakter içermelidir."
-                        formControlName="password" type="password">
+                    <input matInput formControlName="password" type="password">
                     <mat-error *ngIf="password?.errors?.['required'] && (form.touched || form.dirty)">
                         Şifre alanı boş bırakılamaz.
                     </mat-error>
