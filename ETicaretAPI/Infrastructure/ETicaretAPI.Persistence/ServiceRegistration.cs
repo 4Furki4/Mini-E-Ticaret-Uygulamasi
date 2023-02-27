@@ -1,5 +1,6 @@
 ﻿
 using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using ETicaretAPI.Persistence.Contexts;
 using ETicaretAPI.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ETicaretAPI.Persistence
             {
                 opt.UseMySQL(Configuration.ConnectionString);
             });
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ETicaretAPIDbContext>();
             services.AddScoped<ICustomerCommandRepository, CustomerCommandRepository>();
             services.AddScoped<ICustomerQueryRepository, CustomerQueryRepository>();
             services.AddScoped<IOrderCommandRepository, OrderCommandRepository>();
