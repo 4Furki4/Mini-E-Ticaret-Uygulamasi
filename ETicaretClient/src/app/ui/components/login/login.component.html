@@ -11,14 +11,12 @@
                         Kullanıcı adı veya e-posta boş bırakılamaz.
                     </mat-error>
                     <mat-error *ngIf="userName?.errors?.['minlength'] && (form.touched || form.dirty)">
-                        Kullanıcı adı en az 3 karakter uzunluğunda olmalıdır.
+                        Kullanıcı adı veya e-posta en az 3 karakter uzunluğunda olmalıdır.
                     </mat-error>
                     <mat-error *ngIf="userName?.errors?.['maxlength'] && (form.touched || form.dirty)">
-                        Kullanıcı adı en fazla 30 karakter uzunluğunda olmalıdır.
+                        Kullanıcı adı veya e-posta en fazla 40 karakter uzunluğunda olmalıdır.
                     </mat-error>
                 </mat-form-field>
-
-
                 <mat-form-field appearance="outline">
                     <mat-label>Şifre</mat-label>
                     <input matInput formControlName="password" type="password">
