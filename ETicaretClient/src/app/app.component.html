@@ -1,5 +1,5 @@
 <div class="main-dark sticky-top">
-    <nav class="navbar navbar-dark navbar-expand-lg shadow rounded">
+    <nav class="navbar navbar-dark navbar-expand-lg rounded">
         <div class="container-fluid">
             <a class="navbar-brand btn btn-outline-dark border-0" routerLink="">Debdebe</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -21,24 +21,17 @@
                         <a class="nav-link btn btn-outline-danger border-0" aria-current="page"
                             routerLink="admin">Admin</a>
                     </li>
-                    <li class="nav-item dropdown ms-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu ms-2">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-dark border-0" routerLink="register">Kaydol</a>
-                    </li>
                 </ul>
+                <div class="collapse navbar-collapse me-4" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-outline-dark border-0" routerLink="register">Kaydol</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-outline-dark border-0" routerLink="login">Giriş Yap</a>
+                        </li>
+                    </ul>
+                </div>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>

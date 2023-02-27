@@ -5,10 +5,10 @@
             <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, formDirective)" class="form-group"
                 #formDirective="ngForm">
                 <mat-form-field appearance="outline">
-                    <mat-label>Kullanıcı Adı</mat-label>
+                    <mat-label>Kullanıcı Adı veya e-posta</mat-label>
                     <input matInput formControlName="userName" type="text">
                     <mat-error *ngIf="userName?.errors?.['required'] && (form.touched || form.dirty)">
-                        Kullanıcı adı boş bırakılamaz.
+                        Kullanıcı adı veya e-posta boş bırakılamaz.
                     </mat-error>
                     <mat-error *ngIf="userName?.errors?.['minlength'] && (form.touched || form.dirty)">
                         Kullanıcı adı en az 3 karakter uzunluğunda olmalıdır.
