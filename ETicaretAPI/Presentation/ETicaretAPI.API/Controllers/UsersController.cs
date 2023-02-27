@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretAPI.API.Controllers
 {
+    [Route("api/[controller]")]
     public class UsersController : Controller
     {
         readonly IMediator mediator;
@@ -14,7 +15,7 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AppUser(CreateAppUserViewModel viewModel)
+        public async Task<IActionResult> AppUser([FromBody]CreateAppUserViewModel viewModel)
         {
             CreateAppUserCommandRequest request = new(viewModel);
             CreateAppUserCommandResponse result = await mediator.Send(request);

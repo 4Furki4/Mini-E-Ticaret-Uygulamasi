@@ -32,16 +32,25 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
         {
             AppUser appUser = new()
             {
+                Id= Guid.NewGuid().ToString(),
                 FullName = request.ViewModel.FullName,
                 Email = request.ViewModel.Email,
                 UserName = request.ViewModel.UserName,
             };
             string password = request.ViewModel.Password;
             IdentityResult result = await userManager.CreateAsync(appUser, password);
+            CreateAppUserCommandResponse response = new() { IsSuccessfull = result.Succeeded };
             if (result.Succeeded)
-                return new() { IsSuccessfull = true, Message = "User created successfully!" };
+                response.Message = response.Message;
             else
-                throw new UserCreateFailedException();
+            {
+                foreach (var error in result.Errors)
+                {
+                    response.Message += $"{error.Code} - {error.Description}"; //<br> can be added
+                }
+            }
+                
+            return response;
         }
     }
 
