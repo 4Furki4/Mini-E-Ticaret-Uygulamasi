@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { CreateUserResponse } from 'src/app/Contracts/create-user-response';
 import { User } from 'src/app/entities/user';
+import { UserService } from 'src/app/services/common/models/user.service';
+import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,7 +12,7 @@ import { User } from 'src/app/entities/user';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToasterService) {
 
   }
 
@@ -38,16 +42,37 @@ export class RegisterComponent implements OnInit {
     return this.form.get('confirmPassword');
   }
   submitted: boolean = false;
-  onSubmit(value: User, ngForm: FormGroupDirective) {
+  async onSubmit(user: User, ngForm: FormGroupDirective) {
     this.submitted = true;
-    if (!this.form.valid) {
+    if (this.form.invalid) {
       return;
     }
     else {
-      debugger
-      console.log(value);
-      ngForm.resetForm();
-      this.form.reset();
+      console.log(user);
+      await this.userService.create(user).then((res) => {
+        if (res.isSuccessfull) {
+          this.toastrService.message(res.message, "Kayıt Başarılı", {
+            messageType: ToasterType.Success,
+            position: ToasterPosition.TopRight
+          })
+          ngForm.resetForm();
+          this.form.reset();
+        }
+        else {
+          this.toastrService.message(res.message, "Kayıt Başarısız", {
+            messageType: ToasterType.Error,
+            position: ToasterPosition.TopRight
+          })
+        }
+
+      })
+        .catch((error: HttpErrorResponse) => {
+          this.toastrService.message(error.message, "HATA", {
+            messageType: ToasterType.Error,
+            position: ToasterPosition.BottomRight
+          })
+        });
+
     }
   }
   onPasswordChange() {
