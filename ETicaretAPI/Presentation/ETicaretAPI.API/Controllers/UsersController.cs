@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ETicaretAPI.API.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : Controller
     {
         readonly IMediator mediator;

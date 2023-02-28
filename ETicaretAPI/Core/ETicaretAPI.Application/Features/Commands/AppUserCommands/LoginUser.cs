@@ -39,10 +39,10 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
 
         public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            AppUser? appUser = await userManager.FindByNameAsync(request.LoginViewModel.UserNameOrPassword);
+            AppUser? appUser = await userManager.FindByNameAsync(request.LoginViewModel.UserNameOrEmail);
 
             if (appUser is null)
-                appUser = await userManager.FindByEmailAsync(request.LoginViewModel.UserNameOrPassword);
+                appUser = await userManager.FindByEmailAsync(request.LoginViewModel.UserNameOrEmail);
             if(appUser is null)
             {
                 throw new LoginFailedException();

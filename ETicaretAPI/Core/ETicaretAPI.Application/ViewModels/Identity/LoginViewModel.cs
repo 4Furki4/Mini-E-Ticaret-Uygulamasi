@@ -8,7 +8,7 @@ namespace ETicaretAPI.Application.ViewModels.Identity
 {
     public class LoginViewModel
     {
-        public string UserNameOrPassword { get; set; } = string.Empty;
+        public string UserNameOrEmail{ get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
     }
