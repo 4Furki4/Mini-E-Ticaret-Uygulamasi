@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { CreateUserResponse } from 'src/app/Contracts/create-user-response';
+import { Token } from 'src/app/Contracts/token/token';
+import { TokenResponse } from 'src/app/Contracts/token/token-response';
 import { User } from 'src/app/entities/user';
 import { HttpClientService } from '../http-client.service';
 
@@ -20,8 +22,10 @@ export class UserService {
   }
 
   async login(usernameOrpassword: string, password: string): Promise<void> {
-    const observable: Observable<any> = this.httpClient.post({ action: 'login', controller: 'users' }, { usernameOrpassword, password });
+    const observable: Observable<any | Token> = this.httpClient.post({ action: 'login', controller: 'users' }, { usernameOrpassword, password });
 
-    await firstValueFrom(observable);
+    await firstValueFrom(observable).then((val: TokenResponse) => {
+      localStorage.setItem('token', val.token.accessToken);
+    });
   }
 }

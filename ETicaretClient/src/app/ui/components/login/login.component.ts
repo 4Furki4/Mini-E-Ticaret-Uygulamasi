@@ -43,7 +43,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     }).catch((error: HttpErrorResponse) => {
       console.log(error);
       this.hideSpinner(SpinnerTypes.Ball8Bits);
-      this.toastr.message("Giriş yapılamadı, lütfen bilgilerinizi kontrol ediniz...", "BAŞARISIZ!", {
+      this.toastr.message(error.statusText, "BAŞARISIZ!", {
         messageType: ToasterType.Error,
         position: ToasterPosition.TopFullWidth
       });
