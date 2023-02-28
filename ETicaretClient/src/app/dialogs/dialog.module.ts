@@ -8,6 +8,7 @@ import { DialogService } from '../services/common/dialog.service';
 import { SelectProductImageDialogComponent } from './select-product-image-dialog/select-product-image-dialog.component';
 import { FileUploadModule } from '../services/common/file-upload/file-upload.module';
 import { MatCardModule } from '@angular/material/card';
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 
 
 
@@ -15,7 +16,8 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [
     DeleteDialogComponent,
     FileUploadDialogComponent,
-    SelectProductImageDialogComponent
+    SelectProductImageDialogComponent,
+    LogoutDialogComponent
   ],
   imports: [
     CommonModule,

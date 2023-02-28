@@ -1,0 +1,10 @@
+<div class="text-center">
+    <h1 mat-dialog-title class="text-danger">Lütfen Dikkat !</h1>
+    <div mat-dialog-content>
+        <p>Hesabınızdan Çıkmak İstiyor Musunuz ?</p>
+    </div>
+    <div class="buttons" mat-dialog-actions>
+        <button mat-raised-button class="" cdkFocusInitial (click)="onNoClick()">Hayır</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="data">Evet</button>
+    </div>
+</div>

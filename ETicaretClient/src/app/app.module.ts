@@ -9,6 +9,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { DialogService } from './services/common/dialog.service';
+import { DialogModule } from '@angular/cdk/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,11 +26,12 @@ import { JwtModule } from '@auth0/angular-jwt';
         tokenGetter: () => localStorage.getItem('token'),
         allowedDomains: ["localhost:7264"]
       }
-    })
+    }),
+    MatDialogModule
 
   ],
   providers: [
-    { provide: 'BASE_URL', useValue: 'https://localhost:7264/api' }
+    { provide: 'BASE_URL', useValue: 'https://localhost:7264/api' },
   ],
   bootstrap: [AppComponent]
 })
