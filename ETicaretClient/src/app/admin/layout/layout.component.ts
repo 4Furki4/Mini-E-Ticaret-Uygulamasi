@@ -6,14 +6,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) {
+  constructor() {
 
   }
   ngOnInit(): void {
-    this.spinner.show();
-
-    setTimeout(() => {
-      this.spinner.hide()
-    }, 1000)
   }
 }
