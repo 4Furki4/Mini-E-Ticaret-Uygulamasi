@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
+import { AuthService } from 'src/app/services/common/auth.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 
 @Injectable({
@@ -11,7 +12,7 @@ import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/serv
 })
 export class AuthGuard extends BaseComponent implements CanActivate {
 
-  constructor(private jwtHelper: JwtHelperService, private router: Router, spinner: NgxSpinnerService, private toastr: CustomToasterService) {
+  constructor(private jwtHelper: JwtHelperService, private router: Router, spinner: NgxSpinnerService, private toastr: CustomToasterService, private authService: AuthService) {
     super(spinner)
   }
 
@@ -20,14 +21,14 @@ export class AuthGuard extends BaseComponent implements CanActivate {
     : Observable<boolean | UrlTree> |
     Promise<boolean | UrlTree> | boolean | UrlTree {
     this.showSpinner(SpinnerTypes.Ball8Bits);
-    let token: string | null = localStorage.getItem('token');
-    let isExpired: boolean;
-    try {
-      isExpired = this.jwtHelper.isTokenExpired(token as string);
-    } catch {
-      isExpired = true;
-    }
-    if (!token || isExpired) {
+    // let token: string | null = localStorage.getItem('token');
+    // let isExpired: boolean;
+    // try {
+    //   isExpired = this.jwtHelper.isTokenExpired(token as string);
+    // } catch {
+    //   isExpired = true;
+    // }
+    if (!this.authService.IsAuthenticated) {
       this.router.navigate(["login"], {
         queryParams: {
           returnUrl: state.url

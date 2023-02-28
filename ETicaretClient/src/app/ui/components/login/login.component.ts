@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
+import { AuthService } from 'src/app/services/common/auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 
@@ -13,7 +14,8 @@ import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/serv
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private toastr: CustomToasterService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private toastr: CustomToasterService,
+    private authService: AuthService) {
     super(ngxSpinner);
   }
 
@@ -35,6 +37,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   async onSubmit(formValues: AbstractControl, ngForm: FormGroupDirective) {
     this.showSpinner(SpinnerTypes.Ball8Bits);
     await this.userService.login(this.userName?.value, this.password?.value).then((val) => {
+      this.authService.IdentityCheck();
       this.hideSpinner(SpinnerTypes.Ball8Bits);
       this.toastr.message("Giriş yapılıyor...", "BAŞARILI!", {
         messageType: ToasterType.Success,
