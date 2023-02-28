@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LogoutDialogComponent, LogoutDialogResponse } from './dialogs/logout-dialog/logout-dialog.component';
 import { AuthService } from './services/common/auth.service';
@@ -12,7 +13,7 @@ import { CustomToasterService, ToasterPosition, ToasterType } from './services/u
 })
 export class AppComponent {
   title = 'ETicaretClient';
-  constructor(public authService: AuthService, private toastrService: CustomToasterService, private dialogService: DialogService) {
+  constructor(public authService: AuthService, private toastrService: CustomToasterService, private dialogService: DialogService, private router: Router) {
     authService.IdentityCheck();
     console.log(authService.IsAuthenticated);
   }
@@ -30,6 +31,7 @@ export class AppComponent {
           messageType: ToasterType.Success,
           position: ToasterPosition.TopFullWidth
         })
+        this.router.navigate(["login"])
       }
     })
   }
