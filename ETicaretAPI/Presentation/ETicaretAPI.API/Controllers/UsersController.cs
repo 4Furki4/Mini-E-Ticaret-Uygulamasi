@@ -27,8 +27,8 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
         {
             LoginCommand loginCommand = new(loginViewModel);
-            await mediator.Send(loginCommand);
-            return Ok();
+            var result = await mediator.Send(loginCommand);
+            return Ok(result);
         }
 
     }

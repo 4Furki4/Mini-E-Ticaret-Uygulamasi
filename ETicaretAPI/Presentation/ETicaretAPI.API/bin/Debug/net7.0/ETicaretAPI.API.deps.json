@@ -1074,7 +1074,8 @@
       "ETicaretAPI.Infrastructure/1.0.0": {
         "dependencies": {
           "Azure.Storage.Blobs": "12.15.0",
-          "ETicaretAPI.Application": "1.0.0"
+          "ETicaretAPI.Application": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.3"
         },
         "runtime": {
           "ETicaretAPI.Infrastructure.dll": {}
