@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
 import { AuthService } from 'src/app/services/common/auth.service';
@@ -15,7 +16,7 @@ import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/serv
 export class LoginComponent extends BaseComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private toastr: CustomToasterService,
-    private authService: AuthService) {
+    private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) {
     super(ngxSpinner);
   }
 
@@ -43,6 +44,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
         messageType: ToasterType.Success,
         position: ToasterPosition.TopFullWidth
       });
+      this.activatedRoute.queryParams.subscribe(params => {
+        const returnUrl: string = params["returnUrl"]
+        this.router.navigate([returnUrl]);
+      })
     }).catch((error: HttpErrorResponse) => {
       console.log(error);
       this.hideSpinner(SpinnerTypes.Ball8Bits);
