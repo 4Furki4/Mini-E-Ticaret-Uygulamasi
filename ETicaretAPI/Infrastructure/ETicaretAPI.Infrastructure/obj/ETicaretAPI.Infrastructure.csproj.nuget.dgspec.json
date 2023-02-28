@@ -192,7 +192,7 @@
           "dependencies": {
             "Azure.Storage.Blobs": {
               "target": "Package",
-              "version": "[12.14.1, )"
+              "version": "[12.15.0, )"
             }
           },
           "imports": [
