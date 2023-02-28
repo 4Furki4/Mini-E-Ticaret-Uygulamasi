@@ -22,14 +22,20 @@
                             *ngIf="authService.IsAuthenticated">Admin</a>
                     </li>
                 </ul>
-                <div class="collapse navbar-collapse me-4" id="navbarSupportedContent"
-                    *ngIf="!authService.IsAuthenticated">
+                <div class="collapse navbar-collapse me-4" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item ms-2">
-                            <a class="nav-link btn btn-outline-dark border-0" routerLink="register">Kaydol</a>
+                            <a class="nav-link btn btn-outline-dark border-0" *ngIf="authService.IsAuthenticated"
+                                (click)="signOut()">Çıkış
+                                Yap</a>
                         </li>
                         <li class="nav-item ms-2">
-                            <a class="nav-link btn btn-outline-dark border-0" routerLink="login">Giriş Yap</a>
+                            <a class="nav-link btn btn-outline-dark border-0" routerLink="register"
+                                *ngIf="!authService.IsAuthenticated">Kaydol</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link btn btn-outline-dark border-0" routerLink="login"
+                                *ngIf="!authService.IsAuthenticated">Giriş Yap</a>
                         </li>
                     </ul>
                 </div>

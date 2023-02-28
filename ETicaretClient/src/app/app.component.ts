@@ -10,9 +10,17 @@ import { CustomToasterService, ToasterPosition, ToasterType } from './services/u
 })
 export class AppComponent {
   title = 'ETicaretClient';
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private toastrService: CustomToasterService) {
     authService.IdentityCheck();
     console.log(authService.IsAuthenticated);
+  }
+  signOut() {
+    localStorage.removeItem('token');
+    this.authService.IdentityCheck();
+    this.toastrService.message("Başarıyla çıkış yaptınız.", "Hoşça Kalın!", {
+      messageType: ToasterType.Success,
+      position: ToasterPosition.TopFullWidth
+    })
   }
 }
 
