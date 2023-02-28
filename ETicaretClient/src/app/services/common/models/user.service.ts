@@ -21,8 +21,8 @@ export class UserService {
     return await firstValueFrom(observable) as CreateUserResponse;
   }
 
-  async login(usernameOrpassword: string, password: string): Promise<void> {
-    const observable: Observable<any | Token> = this.httpClient.post({ action: 'login', controller: 'users' }, { usernameOrpassword, password });
+  async login(usernameOrEmail: string, password: string): Promise<void> {
+    const observable: Observable<any | Token> = this.httpClient.post({ action: 'login', controller: 'users' }, { usernameOrEmail, password });
 
     await firstValueFrom(observable).then((val: TokenResponse) => {
       localStorage.setItem('token', val.token.accessToken);
