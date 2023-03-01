@@ -1,5 +1,5 @@
 <div class="container shadow rounded mt-5 p-4" [@openClosed]="isOpen ? 'open' : 'void'"
-    [@validatonBorder]="form.valid ? 'valid' : 'void'">
+    [@validatonBorder]=" form.touched != true ? 'void' :  (form.valid ? 'valid' : 'invalid')">
     <div class="row mt-4">
         <div class="col-2"></div>
         <div class="col-8">
