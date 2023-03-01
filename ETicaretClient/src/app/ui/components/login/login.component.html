@@ -1,4 +1,5 @@
-<div class="container shadow mt-5 p-4 border border-dark">
+<div class="container shadow mt-5 p-4" [@openClosed]="isOpen ? 'open' : 'void'"
+    [@validatonBorder]=" form.touched != true ? 'void' :  (form.valid ? 'valid' : 'invalid')">
     <div class="row mt-4">
         <div class="col-2"></div>
         <div class="col-8">
@@ -25,7 +26,8 @@
                     </mat-error>
                 </mat-form-field>
                 <div class="button-div">
-                    <button [disabled]="form.invalid" type="submit" class="btn btn-outline-success btn-lg px-5">
+                    <button [disabled]="form.invalid" type="submit" class="px-5"
+                        [ngClass]="form.touched != true ? 'btn btn-outline-secondary btn-lg' : (form.valid ? 'btn btn-outline-success btn-lg' : 'btn btn-outline-danger btn-lg')">
                         Giriş Yap
                     </button>
                 </div>

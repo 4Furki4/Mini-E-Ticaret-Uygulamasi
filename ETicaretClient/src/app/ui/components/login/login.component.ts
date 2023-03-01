@@ -7,11 +7,38 @@ import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
-
+import { trigger, state, style, animate, transition } from '@angular/animations'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('openClosed', [
+      state('open', style({
+        opacity: '1',
+        marginLeft: '*'
+      })),
+      state('void', style({
+        opacity: '0',
+        marginLeft: '0'
+      })),
+      transition('void => open', animate('1s ease-out')),
+      transition('open => void', animate('1s ease-out'))
+    ]),
+    trigger('validatonBorder', [
+      state('valid', style({
+        border: '2px solid #198754',
+      })),
+      state('invalid', style({
+        border: '2px solid #F44336',
+      })),
+      state('void', style({
+        border: '2px solid gray'
+      })),
+      transition('void<=>invalid', animate('0.75s ease-in-out')),
+      transition('valid<=>invalid', animate('0.5s ease-in-out'))
+    ]),
+  ]
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
@@ -19,9 +46,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
     private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) {
     super(ngxSpinner);
   }
-
+  isOpen = false
   form !: FormGroup;
   ngOnInit(): void {
+    this.isOpen = true;
     this.form = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
       password: ['', Validators.required]
