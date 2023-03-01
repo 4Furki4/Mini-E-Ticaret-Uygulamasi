@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    LoginComponent
   ],
   imports: [
     CommonModule,

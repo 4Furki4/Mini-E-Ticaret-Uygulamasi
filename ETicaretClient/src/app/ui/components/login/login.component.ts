@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/common/auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 import { trigger, state, style, animate, transition } from '@angular/animations'
+import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { SocialUser } from '@abacritt/angularx-social-login/public-api';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,8 +45,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class LoginComponent extends BaseComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private toastr: CustomToasterService,
-    private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) {
+    private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService) {
     super(ngxSpinner);
+    this.socialAuthService.authState.subscribe((user: SocialUser) => {
+      console.log(user)
+    })
   }
   isOpen = false
   form !: FormGroup;
@@ -79,7 +84,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     }).catch((error: HttpErrorResponse) => {
       console.log(error);
       this.hideSpinner(SpinnerTypes.Ball8Bits);
-      this.toastr.message(error.statusText, "BAŞARISIZ!", {
+      this.toastr.message('Şifre, e-posta veya kullanıcı adı yanlış. Lütfen tekrar deneyiniz', "BAŞARISIZ!", {
         messageType: ToasterType.Error,
         position: ToasterPosition.TopFullWidth
       });
