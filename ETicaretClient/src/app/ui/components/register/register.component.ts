@@ -4,7 +4,9 @@ import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, Validation
 import { User } from 'src/app/entities/user';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
-import { trigger, state, style, animate, transition, keyframes } from '@angular/animations'
+import { trigger, state, style, animate, transition } from '@angular/animations'
+import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +14,6 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
   animations: [
     trigger('openClosed', [
       state('open', style({
-
         opacity: '1'
       })),
       state('void', style({
@@ -20,13 +21,23 @@ import { trigger, state, style, animate, transition, keyframes } from '@angular/
       })),
       transition('void => open', animate('0.75s ease-out')),
       transition('open => void', animate('1s ease-out'))
+    ]),
+    trigger('validatonBorder', [
+      state('void', style({
+        border: '2px solid red',
+      })),
+      state('valid', style({
+        border: '2px solid green',
+      })),
+      transition('void => valid', animate('1s ease-in')),
+      transition('valid => void', animate('1s ease-in'))
     ])
   ]
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent extends BaseComponent implements OnInit, OnDestroy {
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToasterService) {
-
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToasterService, spinner: NgxSpinnerService) {
+    super(spinner)
   }
   ngOnDestroy(): void {
     this.isOpen = false;
@@ -60,14 +71,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
   submitted: boolean = false;
   async onSubmit(user: User, ngForm: FormGroupDirective) {
+    this.showSpinner(SpinnerTypes.Ball8Bits)
     this.submitted = true;
     if (this.form.invalid) {
+      this.hideSpinner(SpinnerTypes.Ball8Bits)
       return;
     }
     else {
       console.log(user);
       await this.userService.create(user).then((res) => {
         if (res.isSuccessfull) {
+          this.hideSpinner(SpinnerTypes.Ball8Bits)
           this.toastrService.message(res.message, "Kayıt Başarılı", {
             messageType: ToasterType.Success,
             position: ToasterPosition.TopRight
@@ -76,6 +90,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this.form.reset();
         }
         else {
+          this.hideSpinner(SpinnerTypes.Ball8Bits)
           this.toastrService.message(res.message, "Kayıt Başarısız", {
             messageType: ToasterType.Error,
             position: ToasterPosition.TopRight
@@ -84,6 +99,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
       })
         .catch((error: HttpErrorResponse) => {
+          this.hideSpinner(SpinnerTypes.Ball8Bits)
           this.toastrService.message(error.message, "HATA", {
             messageType: ToasterType.Error,
             position: ToasterPosition.BottomRight
@@ -93,16 +109,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
   onPasswordChange() {
-    this.confirmPassword?.valueChanges.subscribe((value) => {
-
-      if (this.confirmPassword?.value == this.password?.value) {
-        this.confirmPassword?.setErrors(null);
-      } else {
-        this.confirmPassword?.setErrors({ mismatch: true });
-      }
-    })
+    if (this.confirmPassword?.value == this.password?.value) {
+      this.confirmPassword?.setErrors(null);
+    } else {
+      this.confirmPassword?.setErrors({ mismatch: true });
+    }
   }
 }
+
 export function nameValidation(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     let name: string = control?.value;

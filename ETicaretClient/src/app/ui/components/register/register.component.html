@@ -1,4 +1,5 @@
-<div class="container shadow mt-5 p-4 border border-dark" [@openClosed]="isOpen ? 'open' : 'void'">
+<div class="container shadow rounded mt-5 p-4" [@openClosed]="isOpen ? 'open' : 'void'"
+    [@validatonBorder]="form.valid ? 'valid' : 'void'">
     <div class="row mt-4">
         <div class="col-2"></div>
         <div class="col-8">
@@ -51,8 +52,8 @@
                     <mat-label>Şifre</mat-label>
                     <input matInput
                         placeholder="En az 8 karakter, bir büyük harf, bir küçük harf, bir sayı ve bir özel karakter içermelidir."
-                        formControlName="password" type="password" (change)="onPasswordChange()">
-                    <mat-error *ngIf="password?.hasError('required','password') && (form.touched || form.dirty)">
+                        formControlName="password" type="password" (input)="onPasswordChange()">
+                    <mat-error *ngIf="password?.errors?.['required'] && (form.touched || form.dirty)">
                         Şifre alanı boş bırakılamaz.
                     </mat-error>
                     <mat-error *ngIf="password?.errors?.['pattern'] && (form.touched || form.dirty)">
@@ -60,10 +61,10 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" [ngClass]="{'ng-valid': form.hasError('notSame')!}">
+                <mat-form-field appearance="outline">
                     <mat-label>Şifre Tekrar</mat-label>
-                    <input matInput formControlName="confirmPassword" type="password" (change)="onPasswordChange()">
-                    <mat-error *ngIf="confirmPassword?.hasError('mismatch')">
+                    <input matInput formControlName="confirmPassword" type="password" (input)="onPasswordChange()">
+                    <mat-error *ngIf="confirmPassword?.hasError('mismatch') && (form.touched || form.dirty)">
                         Şifreler eşleşmiyor.
                     </mat-error>
                 </mat-form-field>
