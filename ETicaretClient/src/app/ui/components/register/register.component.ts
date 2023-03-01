@@ -14,12 +14,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
   animations: [
     trigger('openClosed', [
       state('open', style({
-        opacity: '1'
+        opacity: '1',
+        marginLeft: '*'
       })),
       state('void', style({
-        opacity: '0'
+        opacity: '0',
+        marginLeft: '0'
       })),
-      transition('void => open', animate('0.75s ease-out')),
+      transition('void => open', animate('1s ease-out')),
       transition('open => void', animate('1s ease-out'))
     ]),
     trigger('validatonBorder', [
@@ -32,9 +34,23 @@ import { NgxSpinnerService } from 'ngx-spinner';
       state('void', style({
         border: '2px solid gray'
       })),
-      transition('void<=>invalid', animate('0.5s ease-in-out')),
+      transition('void<=>invalid', animate('0.75s ease-in-out')),
       transition('valid<=>invalid', animate('0.5s ease-in-out'))
     ]),
+    trigger('buttonColor', [
+      state('valid', style({
+        borderColor: '#198754',
+      })),
+      state('invalid', style({
+        borderColor: '#F44336',
+        color: '#F44336'
+      })),
+      state('void', style({
+        color: "white"
+      })),
+      transition('*=>invalid', animate("0.75s ease-in-out")),
+      transition('valid<=>invalid', animate('0.75s ease-in-out'))
+    ])
   ]
 })
 export class RegisterComponent extends BaseComponent implements OnInit, OnDestroy {
