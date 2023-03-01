@@ -1,23 +1,40 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { CreateUserResponse } from 'src/app/Contracts/create-user-response';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/entities/user';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [
+    trigger('openClosed', [
+      state('open', style({
+
+        opacity: '1'
+      })),
+      state('void', style({
+        opacity: '0'
+      })),
+      transition('void => open', animate('0.75s ease-out')),
+      transition('open => void', animate('1s ease-out'))
+    ])
+  ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToasterService) {
 
   }
-
+  ngOnDestroy(): void {
+    this.isOpen = false;
+  }
+  isOpen: boolean = false;
   form !: FormGroup
   ngOnInit(): void {
+    this.isOpen = true;
     this.form = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), nameValidation()]],
       userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
