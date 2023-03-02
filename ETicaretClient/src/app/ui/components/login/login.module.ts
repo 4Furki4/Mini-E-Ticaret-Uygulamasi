@@ -20,7 +20,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule.forChild([{
       path: '', component: LoginComponent
-    }])
+    }]),
+
   ]
 })
 export class LoginModule { }

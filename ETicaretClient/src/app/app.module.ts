@@ -12,7 +12,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { DialogService } from './services/common/dialog.service';
 import { DialogModule } from '@angular/cdk/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { LoginComponent } from './ui/components/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +39,6 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     ReactiveFormsModule,
     MatFormFieldModule
-
   ],
   providers: [
     { provide: 'BASE_URL', useValue: 'https://localhost:7264/api' },
@@ -51,7 +50,11 @@ import { MatInputModule } from '@angular/material/input';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider("1016383062266-tj15o49nfq4bjg9vdgk7rvapb6qdbp0u.apps.googleusercontent.com")
-          }
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider("748961220181075")
+          },
         ],
         onError: err => console.log(err)
       } as SocialAuthServiceConfig

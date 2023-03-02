@@ -32,8 +32,14 @@
                     </button>
                     <asl-google-signin-button class="mt-2" type='standard' shape="pill" theme="filled_black"
                         size='large'></asl-google-signin-button>
-
+                    <button type="button" (click)="facebookLogin()" class="facebookBtn mt-2 btn btn-outline-primary">
+                        <img style="padding-bottom: 2%;" src="../../../../assets/facebook-icon.png" width="28px">
+                        <span style="font-size: medium;">
+                            Facebook İle Giriş Yap
+                        </span>
+                    </button>
                 </div>
+
             </form>
         </div>
         <div class="col-2"></div>

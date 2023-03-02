@@ -40,4 +40,18 @@ export class UserService {
       localStorage.setItem('token', value.token.accessToken);
     });
   }
+
+  async facebookLogin(user: SocialUser): Promise<void> {
+    console.log(user);
+
+    let observable: Observable<SocialUser | TokenResponse> = this.httpClient.post<SocialUser | TokenResponse>({
+      action: "facebook-login",
+      controller: "users"
+    }, user)
+
+    await firstValueFrom(observable).then((value) => {
+      value = value as TokenResponse;
+      localStorage.setItem('token', value.token.accessToken);
+    })
+  }
 }

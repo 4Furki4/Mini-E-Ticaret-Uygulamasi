@@ -8,9 +8,8 @@ import { AuthService } from 'src/app/services/common/auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 import { trigger, state, style, animate, transition } from '@angular/animations'
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { SocialAuthService, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { SocialUser } from '@abacritt/angularx-social-login/public-api';
-import { TokenResponse } from 'src/app/Contracts/token/token-response';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
@@ -52,20 +51,42 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
     super(ngxSpinner);
     this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
       this.showSpinner(SpinnerTypes.Ball8Bits);
-      await userService.googleLogin(user).then(() => {
-        authService.IdentityCheck()
-        this.hideSpinner(SpinnerTypes.Ball8Bits);
-        this.customToastr.message("Google Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
-          messageType: ToasterType.Success,
-          position: ToasterPosition.TopFullWidth
-        })
-      }).catch((err: HttpErrorResponse) => {
-        this.hideSpinner(SpinnerTypes.Ball8Bits);
-        this.customToastr.message("Google Girişi başarısız!", "BEKLENMEDİK HATA!", {
-          messageType: ToasterType.Error,
-          position: ToasterPosition.BottomCenter
-        })
-      })
+      switch (user.provider) {
+        case 'GOOGLE':
+          await userService.googleLogin(user).then(() => {
+
+            this.hideSpinner(SpinnerTypes.Ball8Bits);
+            this.customToastr.message("Google Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
+              messageType: ToasterType.Success,
+              position: ToasterPosition.TopFullWidth
+            })
+          }).catch((err: HttpErrorResponse) => {
+            this.hideSpinner(SpinnerTypes.Ball8Bits);
+            this.customToastr.message("Google Girişi başarısız!", "BEKLENMEDİK HATA!", {
+              messageType: ToasterType.Error,
+              position: ToasterPosition.BottomCenter
+            })
+          })
+          break;
+        case 'FACEBOOK':
+          await this.userService.facebookLogin(user).then(() => {
+            this.hideSpinner(SpinnerTypes.Ball8Bits);
+            this.customToastr.message("Facebook Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
+              messageType: ToasterType.Success,
+              position: ToasterPosition.TopFullWidth
+            })
+          }).catch((err: HttpErrorResponse) => {
+            this.hideSpinner(SpinnerTypes.Ball8Bits);
+            this.customToastr.message("Facebook Girişi başarısız!", "BEKLENMEDİK HATA!", {
+              messageType: ToasterType.Error,
+              position: ToasterPosition.BottomCenter
+            })
+          })
+          break;
+        default:
+          break;
+      }
+      authService.IdentityCheck()
     })
   }
   ngOnDestroy(): void {
@@ -110,6 +131,10 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
         position: ToasterPosition.TopFullWidth
       });
     })
+  }
+
+  facebookLogin() {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
 }
