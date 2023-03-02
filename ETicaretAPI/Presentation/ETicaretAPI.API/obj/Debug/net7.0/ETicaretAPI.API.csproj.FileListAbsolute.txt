@@ -271,3 +271,8 @@ C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAP
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Google.Apis.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Google.Apis.Auth.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Google.Apis.Core.dll
+C:\Users\Furkan Cengiz\Source\Repos\4Furki4\Mini-E-Ticaret-Uygulamasi\ETicaretAPI\Presentation\ETicaretAPI.API\bin\Debug\net7.0\Newtonsoft.Json.dll
