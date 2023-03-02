@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -10,6 +10,8 @@ import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/serv
 import { trigger, state, style, animate, transition } from '@angular/animations'
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { SocialUser } from '@abacritt/angularx-social-login/public-api';
+import { TokenResponse } from 'src/app/Contracts/token/token-response';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,14 +44,33 @@ import { SocialUser } from '@abacritt/angularx-social-login/public-api';
     ]),
   ]
 })
-export class LoginComponent extends BaseComponent implements OnInit {
+export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private toastr: CustomToasterService,
-    private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private customToastr: CustomToasterService,
+    private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService, private toastr: ToastrService
+  ) {
     super(ngxSpinner);
-    this.socialAuthService.authState.subscribe((user: SocialUser) => {
-      console.log(user)
+    this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
+      this.showSpinner(SpinnerTypes.Ball8Bits);
+      await userService.googleLogin(user).then(() => {
+        authService.IdentityCheck()
+        this.hideSpinner(SpinnerTypes.Ball8Bits);
+        this.customToastr.message("Google Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
+          messageType: ToasterType.Success,
+          position: ToasterPosition.TopFullWidth
+        })
+      }).catch((err: HttpErrorResponse) => {
+        this.hideSpinner(SpinnerTypes.Ball8Bits);
+        this.customToastr.message("Google Girişi başarısız!", "BEKLENMEDİK HATA!", {
+          messageType: ToasterType.Error,
+          position: ToasterPosition.BottomCenter
+        })
+      })
     })
+  }
+  ngOnDestroy(): void {
+    this.isOpen = false;
+    this.toastr.clear();
   }
   isOpen = false
   form !: FormGroup;
@@ -73,7 +94,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     await this.userService.login(this.userName?.value, this.password?.value).then((val) => {
       this.authService.IdentityCheck();
       this.hideSpinner(SpinnerTypes.Ball8Bits);
-      this.toastr.message("Giriş yapılıyor...", "BAŞARILI!", {
+      this.customToastr.message("Giriş yapılıyor...", "BAŞARILI!", {
         messageType: ToasterType.Success,
         position: ToasterPosition.TopFullWidth
       });
@@ -84,7 +105,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     }).catch((error: HttpErrorResponse) => {
       console.log(error);
       this.hideSpinner(SpinnerTypes.Ball8Bits);
-      this.toastr.message('Şifre, e-posta veya kullanıcı adı yanlış. Lütfen tekrar deneyiniz', "BAŞARISIZ!", {
+      this.customToastr.message('Şifre, e-posta veya kullanıcı adı yanlış. Lütfen tekrar deneyiniz', "BAŞARISIZ!", {
         messageType: ToasterType.Error,
         position: ToasterPosition.TopFullWidth
       });

@@ -1,3 +1,4 @@
+import { SocialUser } from '@abacritt/angularx-social-login/public-api';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { CreateUserResponse } from 'src/app/Contracts/create-user-response';
@@ -26,6 +27,17 @@ export class UserService {
 
     await firstValueFrom(observable).then((val: TokenResponse) => {
       localStorage.setItem('token', val.token.accessToken);
+    });
+  }
+
+  async googleLogin(user: SocialUser): Promise<void> {
+    let observable: Observable<SocialUser | TokenResponse> = this.httpClient.post<SocialUser | TokenResponse>({
+      action: "google-login",
+      controller: "users"
+    }, user);
+    await firstValueFrom(observable).then((value) => {
+      value = value as TokenResponse;
+      localStorage.setItem('token', value.token.accessToken);
     });
   }
 }
