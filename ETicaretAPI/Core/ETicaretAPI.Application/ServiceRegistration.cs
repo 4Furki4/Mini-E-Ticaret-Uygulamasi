@@ -12,6 +12,7 @@ namespace ETicaretAPI.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(s => s.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
+            services.AddHttpClient();
         }
     }
 }

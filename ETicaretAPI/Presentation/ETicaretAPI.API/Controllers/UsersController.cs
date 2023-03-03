@@ -41,5 +41,13 @@ namespace ETicaretAPI.API.Controllers
             return Ok(response);
         }
 
+        [HttpPost("facebook-login")]
+
+        public async Task<IActionResult> FacebookLogin([FromBody] FacebookLoginViewModel facebookLoginVM)
+        {
+            FacebookLoginCommand facebookLoginCommand = new(facebookLoginVM);
+            FacebookLoginCommandResponse response = await mediator.Send(facebookLoginCommand);
+            return Ok(response);
+        }
     }
 }
