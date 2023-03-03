@@ -51,7 +51,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
     super(ngxSpinner);
     this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
       this.showSpinner(SpinnerTypes.Ball8Bits);
-      switch (user.provider) {
+      switch (user?.provider) {
         case 'GOOGLE':
           await userService.googleLogin(user).then(() => {
 
@@ -84,6 +84,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
           })
           break;
         default:
+          this.hideSpinner(SpinnerTypes.Ball8Bits);
           break;
       }
       authService.IdentityCheck()
@@ -92,6 +93,8 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isOpen = false;
     this.toastr.clear();
+    debugger;
+    this.socialAuthService.signOut();
   }
   isOpen = false
   form !: FormGroup;
@@ -134,6 +137,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   }
 
   facebookLogin() {
+    debugger;
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 

@@ -90,6 +90,7 @@ export class RegisterComponent extends BaseComponent implements OnInit, OnDestro
   }
   submitted: boolean = false;
   async onSubmit(user: User, ngForm: FormGroupDirective) {
+    debugger;
     this.showSpinner(SpinnerTypes.Ball8Bits)
     this.submitted = true;
     if (this.form.invalid) {
