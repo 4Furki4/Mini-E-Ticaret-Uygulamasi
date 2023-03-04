@@ -5,12 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerTypes } from 'src/app/base/base.component';
 import { AuthService } from 'src/app/services/common/auth.service';
-import { UserService } from 'src/app/services/common/models/user.service';
 import { CustomToasterService, ToasterPosition, ToasterType } from 'src/app/services/ui/toaster/custom-toaster.service';
 import { trigger, state, style, animate, transition } from '@angular/animations'
 import { SocialAuthService, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { SocialUser } from '@abacritt/angularx-social-login/public-api';
 import { ToastrService } from 'ngx-toastr';
+import { UserAuthService } from 'src/app/services/common/models/user-auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -45,7 +45,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, ngxSpinner: NgxSpinnerService, private customToastr: CustomToasterService,
+  constructor(private formBuilder: FormBuilder, private userAuthService: UserAuthService, ngxSpinner: NgxSpinnerService, private customToastr: CustomToasterService,
     private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService, private toastr: ToastrService
   ) {
     super(ngxSpinner);
@@ -53,7 +53,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
       this.showSpinner(SpinnerTypes.Ball8Bits);
       switch (user?.provider) {
         case 'GOOGLE':
-          await userService.googleLogin(user).then(() => {
+          await userAuthService.googleLogin(user).then(() => {
 
             this.hideSpinner(SpinnerTypes.Ball8Bits);
             this.customToastr.message("Google Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
@@ -69,7 +69,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
           })
           break;
         case 'FACEBOOK':
-          await this.userService.facebookLogin(user).then(() => {
+          await this.userAuthService.facebookLogin(user).then(() => {
             this.hideSpinner(SpinnerTypes.Ball8Bits);
             this.customToastr.message("Facebook Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
               messageType: ToasterType.Success,
@@ -115,7 +115,7 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
   async onSubmit(formValues: AbstractControl, ngForm: FormGroupDirective) {
     this.showSpinner(SpinnerTypes.Ball8Bits);
-    await this.userService.login(this.userName?.value, this.password?.value).then((val) => {
+    await this.userAuthService.login(this.userName?.value, this.password?.value).then((val) => {
       this.authService.IdentityCheck();
       this.hideSpinner(SpinnerTypes.Ball8Bits);
       this.customToastr.message("Giriş yapılıyor...", "BAŞARILI!", {
