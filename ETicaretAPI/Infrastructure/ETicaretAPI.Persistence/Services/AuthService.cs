@@ -1,20 +1,17 @@
 ﻿using ETicaretAPI.Application.Abstractions.Services;
 using ETicaretAPI.Application.DTOs;
 using ETicaretAPI.Application.DTOs.Facebook;
-using Google.Apis.Http;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Http= System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using ETicaretAPI.Application.Abstractions.Token;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
+using static Google.Apis.Auth.GoogleJsonWebSignature;
 
 namespace ETicaretAPI.Persistence.Services
 {
@@ -24,7 +21,7 @@ namespace ETicaretAPI.Persistence.Services
         readonly IConfiguration configuration;
         readonly UserManager<AppUser> userManager;
         readonly ITokenHandler tokenHandler;
-        public AuthService(Http.IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler)
+        public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler)
         {
             httpClient = httpClientFactory.CreateClient();
             this.configuration = configuration;
@@ -80,9 +77,40 @@ namespace ETicaretAPI.Persistence.Services
             throw new Exception("Invalid external login!");
         }
 
-        public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTime)
+        public async Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTime)
         {
-            
+            var settings = new ValidationSettings()
+            {
+                Audience = new List<string> { configuration["ExternalLoginSettings:Google:Client_Id"] }
+            };
+
+            Payload payload = await ValidateAsync(idToken, settings);
+            UserLoginInfo userInfo = new("GOOGLE", payload.Subject, "GOOGLE");
+            AppUser? user = await userManager.FindByLoginAsync(userInfo.LoginProvider, userInfo.ProviderKey);
+            bool result = user != null;
+            if (user is null)
+            {
+                user = await userManager.FindByEmailAsync(payload.Email);
+                if (user is null)
+                {
+                    user = new()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Email = payload.Email,
+                        UserName = payload.Email,
+                        FullName = payload.GivenName
+                    };
+                    IdentityResult identityResult = await userManager.CreateAsync(user);
+                    result = identityResult.Succeeded;
+                }
+            }
+            if (result)
+                await userManager.AddLoginAsync(user, userInfo);
+            else
+                throw new Exception("Invalid external login!");
+
+            Token token = tokenHandler.CreateAccessToken(15);
+            return token;
         }
 
         public Task LoginAsync()

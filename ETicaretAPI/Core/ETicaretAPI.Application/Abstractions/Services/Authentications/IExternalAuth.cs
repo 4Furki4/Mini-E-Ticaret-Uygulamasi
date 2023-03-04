@@ -9,7 +9,7 @@ namespace ETicaretAPI.Application.Abstractions.Services.Authentications
 {
     public interface IExternalAuth
     {
-        Task<DTOs.Token> GoogleLoginAsync(string idToken, int tokenLifeTime);
-        Task<DTOs.Token> FacebookLoginAsync(string authToken , int tokenLifeTime);
+        Task<DTOs.Token> GoogleLoginAsync(string idToken, int tokenLifeTimeSec);
+        Task<DTOs.Token> FacebookLoginAsync(string authToken , int tokenLifeTimeSec);
     }
 }

@@ -4,7 +4,6 @@ using ETicaretAPI.Application.DTOs;
 using ETicaretAPI.Application.DTOs.Facebook;
 using ETicaretAPI.Application.ViewModels.Identity;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
-using Google.Apis.Auth.OAuth2;
 using MediatR;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
@@ -38,7 +37,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
 
         public async Task<FacebookLoginCommandResponse> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
         {
-            Token token = await externalAuth.FacebookLoginAsync(request.ViewModel.AuthToken);
+            Token token = await externalAuth.FacebookLoginAsync(request.ViewModel.AuthToken, 60);
             return new()
             {
                 Token = token

@@ -56,10 +56,6 @@
               "target": "Package",
               "version": "[11.5.1, )"
             },
-            "Google.Apis.Auth": {
-              "target": "Package",
-              "version": "[1.60.0, )"
-            },
             "MediatR": {
               "target": "Package",
               "version": "[12.0.1, )"
@@ -194,6 +190,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.60.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.3, )"
