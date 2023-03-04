@@ -1,18 +1,12 @@
-﻿using ETicaretAPI.Application.Abstractions.Storage;
-using ETicaretAPI.Application.Features.Commands.ProductCommands;
+﻿using ETicaretAPI.Application.Features.Commands.ProductCommands;
 using ETicaretAPI.Application.Features.Commands.ProductImageFileCommands;
 using ETicaretAPI.Application.Features.Queries.ProductImageFileQueries;
 using ETicaretAPI.Application.Features.Queries.ProductQueries;
-using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParams;
 using ETicaretAPI.Application.ViewModels.Product;
-using ETicaretAPI.Domain.Entities;
-using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 using static ETicaretAPI.Application.Features.Queries.ProductQueries.GetAllProducts;
 

@@ -1,20 +1,13 @@
 ﻿using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.Abstractions.Token;
 using ETicaretAPI.Application.DTOs;
 using ETicaretAPI.Application.DTOs.Facebook;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using Microsoft.Extensions.Configuration;
-using ETicaretAPI.Application.Abstractions.Token;
+using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 using static Google.Apis.Auth.GoogleJsonWebSignature;
-using ETicaretAPI.Application.Exceptions;
-using ETicaretAPI.Application.Features.Commands.AppUserCommands;
-using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace ETicaretAPI.Persistence.Services
 {
