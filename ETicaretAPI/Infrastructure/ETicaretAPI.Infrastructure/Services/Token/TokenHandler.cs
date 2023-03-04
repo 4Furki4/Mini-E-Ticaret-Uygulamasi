@@ -19,7 +19,7 @@ namespace ETicaretAPI.Infrastructure.Services.Token
             this.configuration = configuration;
         }
 
-        public Application.DTOs.Token CreateAccessToken(int minute)
+        public Application.DTOs.Token CreateAccessToken(int second)
         {
             Application.DTOs.Token token = new();
 
@@ -27,7 +27,7 @@ namespace ETicaretAPI.Infrastructure.Services.Token
 
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
-            token.ExpirationDate = DateTime.Now.AddMinutes(minute);
+            token.ExpirationDate = DateTime.Now.AddSeconds(second);
 
             //Token Configurations
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken

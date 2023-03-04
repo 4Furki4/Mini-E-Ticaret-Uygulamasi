@@ -31,7 +31,7 @@ namespace ETicaretAPI.Persistence.Services
             this.userManager = userManager;
             this.tokenHandler = tokenHandler;
         }
-        public async Task<Token> FacebookLoginAsync(string authToken)
+        public async Task<Token> FacebookLoginAsync(string authToken, int tokenLifeTime)
         {
             string accessToken = await httpClient
                 .GetStringAsync($"https://graph.facebook.com/oauth/access_token?client_id={configuration["ExternalLoginSettings:Facebook:Client_Id"]}&client_secret={configuration["ExternalLoginSettings:Facebook:Client_Secret"]}&grant_type=client_credentials");
@@ -69,7 +69,7 @@ namespace ETicaretAPI.Persistence.Services
                 if (result)
                 {
                     await userManager.AddLoginAsync(user, userLoginInfo);
-                    Token token = tokenHandler.CreateAccessToken(15);
+                    Token token = tokenHandler.CreateAccessToken(tokenLifeTime);
                     return token;
                 }
                 else
@@ -80,9 +80,9 @@ namespace ETicaretAPI.Persistence.Services
             throw new Exception("Invalid external login!");
         }
 
-        public Task<Token> GoogleLoginAsync(string idToken)
+        public Task<Token> GoogleLoginAsync(string idToken, int tokenLifeTime)
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task LoginAsync()
