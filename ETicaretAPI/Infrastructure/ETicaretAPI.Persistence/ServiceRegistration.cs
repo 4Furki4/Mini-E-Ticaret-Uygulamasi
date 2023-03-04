@@ -1,8 +1,10 @@
 ﻿
+using ETicaretAPI.Application.Abstractions.Services;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using ETicaretAPI.Persistence.Contexts;
 using ETicaretAPI.Persistence.Repositories;
+using ETicaretAPI.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -34,6 +36,8 @@ namespace ETicaretAPI.Persistence
             services.AddScoped<IInvoiceFileQueryRepository, InvoiceFileQueryRepository>();
             services.AddScoped<IProductImageQueryRepository, ProductImageFileQueryRepository>();
             services.AddScoped<IProductImageCommandRepository, ProductImageCommandRepository>();
+
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

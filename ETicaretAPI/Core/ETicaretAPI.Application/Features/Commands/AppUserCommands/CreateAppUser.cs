@@ -1,6 +1,6 @@
-﻿using ETicaretAPI.Application.Exceptions;
+﻿using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.DTOs.User;
 using ETicaretAPI.Application.ViewModels.Identity;
-using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -22,34 +22,27 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
 
     public class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommandRequest, CreateAppUserCommandResponse>
     {
-        readonly UserManager<AppUser> userManager;
+        readonly IUserService userService;
 
-        public CreateAppUserCommandHandler(UserManager<AppUser> userManager)
+        public CreateAppUserCommandHandler(IUserService userService)
         {
-            this.userManager = userManager;
+            this.userService = userService;
         }
+
         public async Task<CreateAppUserCommandResponse> Handle(CreateAppUserCommandRequest request, CancellationToken cancellationToken)
         {
-            AppUser appUser = new()
+            CreateUserDTO createUserDTO = new()
             {
-                Id= Guid.NewGuid().ToString(),
-                FullName = request.ViewModel.FullName,
-                Email = request.ViewModel.Email,
                 UserName = request.ViewModel.UserName,
+                Email = request.ViewModel.Email,
+                FullName = request.ViewModel.FullName,
+                Password = request.ViewModel.Password,
+                PasswordConfirm = request.ViewModel.ConfirmPassword
             };
-            string password = request.ViewModel.Password;
-            IdentityResult result = await userManager.CreateAsync(appUser, password);
-            CreateAppUserCommandResponse response = new() { IsSuccessfull = result.Succeeded };
-            if (result.Succeeded)
-                response.Message = response.Message;
-            else
-            {
-                foreach (var error in result.Errors)
-                {
-                    response.Message += $"{error.Code} - {error.Description}"; //<br> can be added
-                }
-            }
-                
+            CreateUserResponseDTO responseDTO = await userService.CreateAsync(createUserDTO);
+
+            CreateAppUserCommandResponse response = new() { IsSuccessfull = responseDTO.IsSuccessfull, Message = responseDTO.Message };
+
             return response;
         }
     }
