@@ -1,5 +1,6 @@
 ﻿
 using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.Abstractions.Services.Authentications;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using ETicaretAPI.Persistence.Contexts;
@@ -38,6 +39,10 @@ namespace ETicaretAPI.Persistence
             services.AddScoped<IProductImageCommandRepository, ProductImageCommandRepository>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddHttpClient();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuth, AuthService>(); // It resolves just external auth interface's members.
+            services.AddScoped<IInternalAuth, AuthService>();
         }
     }
 }
