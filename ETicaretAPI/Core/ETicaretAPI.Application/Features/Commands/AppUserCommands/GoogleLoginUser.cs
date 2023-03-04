@@ -32,7 +32,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
             Token token = await externalAuth.GoogleLoginAsync(request.ViewModel.idToken, 60);
             return new()
             {
-                Token = token,
+                Token = token
             };
         }
     }
