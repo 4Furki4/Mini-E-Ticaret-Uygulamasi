@@ -12,6 +12,9 @@ using ETicaretAPI.Application.Abstractions.Token;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using Microsoft.AspNetCore.Identity;
 using static Google.Apis.Auth.GoogleJsonWebSignature;
+using ETicaretAPI.Application.Exceptions;
+using ETicaretAPI.Application.Features.Commands.AppUserCommands;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace ETicaretAPI.Persistence.Services
 {
@@ -21,12 +24,14 @@ namespace ETicaretAPI.Persistence.Services
         readonly IConfiguration configuration;
         readonly UserManager<AppUser> userManager;
         readonly ITokenHandler tokenHandler;
-        public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler)
+        readonly SignInManager<AppUser> signInManager;
+        public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
         {
             httpClient = httpClientFactory.CreateClient();
             this.configuration = configuration;
             this.userManager = userManager;
             this.tokenHandler = tokenHandler;
+            this.signInManager = signInManager;
         }
 
         private async Task ConfirmOrCreateUser(UserLoginInfo userInfo ,string email, string name)
@@ -100,9 +105,25 @@ namespace ETicaretAPI.Persistence.Services
             return token;
         }
 
-        public Task LoginAsync()
+        public async Task<Token> LoginAsync(string usernameOrEmail, string password)
         {
-            throw new NotImplementedException();
+            AppUser? appUser = await userManager.FindByNameAsync(usernameOrEmail);
+
+            if (appUser is null)
+                appUser = await userManager.FindByEmailAsync(usernameOrEmail);
+            if (appUser is null)
+            {
+                throw new LoginFailedException();
+            }
+
+            SignInResult result = await signInManager.CheckPasswordSignInAsync(appUser, password, false);
+            if (result.Succeeded)
+            {
+                Token token = tokenHandler.CreateAccessToken(5);
+                return token;
+            }
+            else
+                throw new LoginFailedException();
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using ETicaretAPI.Application.Abstractions.Token;
+﻿using ETicaretAPI.Application.Abstractions.Services.Authentications;
 using ETicaretAPI.Application.DTOs;
-using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Application.ViewModels.Identity;
-using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -26,40 +24,23 @@ namespace ETicaretAPI.Application.Features.Commands.AppUserCommands
 
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginCommandResponse>
     {
-        readonly UserManager<AppUser> userManager;
-        readonly SignInManager<AppUser> signInManager;
-        readonly ITokenHandler tokenHandler;
+        readonly IInternalAuth internalAuth;
 
-        public LoginCommandHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenHandler tokenHandler)
+        public LoginCommandHandler(IInternalAuth internalAuth)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.tokenHandler = tokenHandler;
+            this.internalAuth = internalAuth;
         }
 
         public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            AppUser? appUser = await userManager.FindByNameAsync(request.LoginViewModel.UserNameOrEmail);
 
-            if (appUser is null)
-                appUser = await userManager.FindByEmailAsync(request.LoginViewModel.UserNameOrEmail);
-            if(appUser is null)
-            {
-                throw new LoginFailedException();
-            }
+            Token token = await internalAuth.LoginAsync(request.LoginViewModel.UserNameOrEmail, request.LoginViewModel.Password);
 
-            SignInResult result = await signInManager.CheckPasswordSignInAsync(appUser, request.LoginViewModel.Password, false);
-            if (result.Succeeded)
+            return new()
             {
-                Token token = tokenHandler.CreateAccessToken(5);
-                return new LoginCommandResponse()
-                {
-                    Token = token,
-                    Message = "Giriş başarılı."
-                };
-            }
-            else
-                throw new LoginFailedException();
+                Token = token,
+                Message = "Giriş Yapıldı !"
+            };
         }
     }
 
