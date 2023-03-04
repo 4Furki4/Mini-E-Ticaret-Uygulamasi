@@ -12,7 +12,7 @@ export class UserAuthService {
 
   constructor(private httpClient: HttpClientService) { }
   async login(usernameOrEmail: string, password: string): Promise<void> {
-    const observable: Observable<any | Token> = this.httpClient.post({ action: 'login', controller: 'users' }, { usernameOrEmail, password });
+    const observable: Observable<any | Token> = this.httpClient.post({ action: 'login', controller: 'auth' }, { usernameOrEmail, password });
 
     await firstValueFrom(observable).then((val: TokenResponse) => {
       localStorage.setItem('token', val.token.accessToken);
