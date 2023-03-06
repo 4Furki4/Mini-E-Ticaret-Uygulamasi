@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DialogService } from './services/common/dialog.service';
 import { DialogModule } from '@angular/cdk/dialog';
@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ErrorHandlerHttpInterceptorService } from './services/common/error-handler-http-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { MatInputModule } from '@angular/material/input';
         ],
         onError: err => console.log(err)
       } as SocialAuthServiceConfig
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerHttpInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
