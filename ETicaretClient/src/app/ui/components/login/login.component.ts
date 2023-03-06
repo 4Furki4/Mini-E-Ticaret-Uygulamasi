@@ -56,6 +56,10 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
           await userAuthService.googleLogin(user).then(() => {
 
             this.hideSpinner(SpinnerTypes.Ball8Bits);
+            this.activatedRoute.queryParams.subscribe(params => {
+              const returnUrl: string = params["returnUrl"]
+              this.router.navigate([returnUrl]);
+            })
             this.customToastr.message("Google Hesabınız ile girişiniz başarılı", "GİRİŞ BAŞARILI!", {
               messageType: ToasterType.Success,
               position: ToasterPosition.TopFullWidth
@@ -93,7 +97,6 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isOpen = false;
     this.toastr.clear();
-    debugger;
     this.socialAuthService.signOut();
   }
   isOpen = false

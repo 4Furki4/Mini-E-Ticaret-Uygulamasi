@@ -21,14 +21,10 @@ export class AuthGuard extends BaseComponent implements CanActivate {
     : Observable<boolean | UrlTree> |
     Promise<boolean | UrlTree> | boolean | UrlTree {
     this.showSpinner(SpinnerTypes.Ball8Bits);
-    // let token: string | null = localStorage.getItem('token');
-    // let isExpired: boolean;
-    // try {
-    //   isExpired = this.jwtHelper.isTokenExpired(token as string);
-    // } catch {
-    //   isExpired = true;
-    // }
+    this.authService.IdentityCheck();
+    debugger;
     if (!this.authService.IsAuthenticated) {
+
       this.router.navigate(["login"], {
         queryParams: {
           returnUrl: state.url

@@ -1,5 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { CustomToasterService, ToasterPosition, ToasterType } from '../ui/toaster/custom-toaster.service';
 
@@ -8,11 +9,16 @@ import { CustomToasterService, ToasterPosition, ToasterType } from '../ui/toaste
 })
 export class ErrorHandlerHttpInterceptorService implements HttpInterceptor {
 
-  constructor(private customToastr: CustomToasterService) { }
+  constructor(private customToastr: CustomToasterService, private router: Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError(err => {
       switch (err.status) {
         case HttpStatusCode.Unauthorized:
+          this.router.navigate(['login'], {
+            queryParams: {
+              returnUrl: this.router.url
+            }
+          })
           this.customToastr.message('Lütfen tekrar giriş yapmayı deneyiniz.', 'GİRİŞ YAPILMADI!', {
             messageType: ToasterType.Error,
             position: ToasterPosition.TopRight

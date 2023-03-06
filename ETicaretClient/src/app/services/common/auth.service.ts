@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { debug } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +30,4 @@ export class AuthService {
 
 
 
-export let isAuthenticated !: boolean;
+export var isAuthenticated !: boolean;

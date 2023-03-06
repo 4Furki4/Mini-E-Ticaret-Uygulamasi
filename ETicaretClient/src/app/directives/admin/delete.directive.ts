@@ -37,7 +37,7 @@ export class DeleteDirective {
         const request: Observable<any> = this.httpClient.delete({
           controller: this.controller,
         }, this.id)
-        await firstValueFrom(request).then(
+        await firstValueFrom(request).then(val => {
           $(td.parentElement).fadeOut(500, () => {
             this.deleteCallBack.emit();
             this.alertifyServie.message('Deleted Successfully', {
@@ -47,7 +47,9 @@ export class DeleteDirective {
               dismissOthers: true
             })
           })
-        )
+
+        }
+        ).catch()
       },
       options: {
         width: '400px',
