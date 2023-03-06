@@ -98,7 +98,7 @@ namespace ETicaretAPI.Persistence.Services
             return token;
         }
 
-        public async Task<Token> LoginAsync(string usernameOrEmail, string password)
+        public async Task<Token> LoginAsync(string usernameOrEmail, string password, int tokenLifeTimeSec)
         {
             AppUser? appUser = await userManager.FindByNameAsync(usernameOrEmail);
 
@@ -112,7 +112,7 @@ namespace ETicaretAPI.Persistence.Services
             SignInResult result = await signInManager.CheckPasswordSignInAsync(appUser, password, false);
             if (result.Succeeded)
             {
-                Token token = tokenHandler.CreateAccessToken(5);
+                Token token = tokenHandler.CreateAccessToken(tokenLifeTimeSec);
                 return token;
             }
             else
