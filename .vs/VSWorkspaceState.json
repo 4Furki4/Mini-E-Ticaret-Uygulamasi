@@ -4,13 +4,16 @@
     "\\ETicaretAPI",
     "\\ETicaretAPI\\Core",
     "\\ETicaretAPI\\Core\\ETicaretAPI.Application",
-    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Abstractions",
-    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Abstractions\\Services",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features\\Commands",
+    "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Features\\Commands\\AppUserCommands",
+    "\\ETicaretAPI\\Infrastructure",
+    "\\ETicaretAPI\\Infrastructure\\ETicaretAPI.Persistence",
     "\\ETicaretAPI\\Presentation",
     "\\ETicaretAPI\\Presentation\\ETicaretAPI.API",
     "\\ETicaretAPI\\Presentation\\ETicaretAPI.API\\Controllers",
     "\\ETicaretClient"
   ],
-  "SelectedNode": "\\ETicaretAPI\\Core\\ETicaretAPI.Application\\Abstractions\\Services\\IUserService.cs",
+  "SelectedNode": "\\ETicaretAPI\\ETicaretAPI.sln",
   "PreviewInSolutionExplorer": false
 }
