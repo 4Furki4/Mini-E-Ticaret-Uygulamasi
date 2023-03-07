@@ -5,6 +5,7 @@ using ETicaretAPI.Application.DTOs.Facebook;
 using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Domain.Entities.Identity.AppUsers;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using static Google.Apis.Auth.GoogleJsonWebSignature;
@@ -128,6 +129,19 @@ namespace ETicaretAPI.Persistence.Services
             }
             else
                 throw new LoginFailedException();
+        }
+
+        public async Task<Token> LoginWithRefreshToken(string refreshToken)
+        {
+            AppUser? user = await userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            if(user != null && user?.RefershTokenExpirationDate > DateTime.UtcNow)
+            {
+                Token token = tokenHandler.CreateAccessToken(30);
+                token.RefreshToken = tokenHandler.CreateRefreshToken();
+                await userService.UpdateRefreshToken(token.RefreshToken, user, token.ExpirationDate, 60);
+                return token;
+            }
+            throw new UserNotFoundException();
         }
     }
 }

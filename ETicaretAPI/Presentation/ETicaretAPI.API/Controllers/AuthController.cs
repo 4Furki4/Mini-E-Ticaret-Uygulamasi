@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Features.Commands.AppUserCommands;
+﻿using ETicaretAPI.Application.DTOs;
+using ETicaretAPI.Application.Features.Commands.AppUserCommands;
 using ETicaretAPI.Application.ViewModels.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,15 @@ namespace ETicaretAPI.API.Controllers
         {
             FacebookLoginCommand facebookLoginCommand = new(facebookLoginVM);
             FacebookLoginCommandResponse response = await mediator.Send(facebookLoginCommand);
+            return Ok(response);
+        }
+
+        [HttpGet("[action]")]
+
+        public async Task<IActionResult> RefreshToken([FromForm] string refreshToken)
+        {
+            RefreshTokenAuthCommand refreshTokenCommand = new(refreshToken);
+            RefreshTokenAuthCommandResponse response = await mediator.Send(refreshTokenCommand);
             return Ok(response);
         }
     }
