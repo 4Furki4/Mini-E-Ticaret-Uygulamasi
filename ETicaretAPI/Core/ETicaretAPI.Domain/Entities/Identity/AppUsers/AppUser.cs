@@ -10,5 +10,8 @@ namespace ETicaretAPI.Domain.Entities.Identity.AppUsers
     public class AppUser : IdentityUser<string>
     {
         public string FullName { get; set; }
+
+        public string? RefreshToken { get; set; }
+        public DateTime? RefershTokenExpirationDate { get; set; }
     }
 }

@@ -18,16 +18,18 @@ namespace ETicaretAPI.Persistence.Services
         readonly UserManager<AppUser> userManager;
         readonly ITokenHandler tokenHandler;
         readonly SignInManager<AppUser> signInManager;
-        public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
+        readonly IUserService userService;
+        public AuthService(IHttpClientFactory httpClientFactory, IConfiguration configuration, UserManager<AppUser> userManager, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager, IUserService userService)
         {
             httpClient = httpClientFactory.CreateClient();
             this.configuration = configuration;
             this.userManager = userManager;
             this.tokenHandler = tokenHandler;
             this.signInManager = signInManager;
+            this.userService = userService;
         }
 
-        private async Task ConfirmOrCreateUser(UserLoginInfo userInfo ,string email, string name)
+        private async Task<AppUser> ConfirmOrCreateUser(UserLoginInfo userInfo ,string email, string name)
         {
             AppUser? user = await userManager.FindByLoginAsync(userInfo.LoginProvider, userInfo.ProviderKey);
 
@@ -50,7 +52,10 @@ namespace ETicaretAPI.Persistence.Services
                 }
             }
             if (result)
+            {
                 await userManager.AddLoginAsync(user, userInfo);
+                return user;
+            }
             else
                 throw new Exception("Invalid external login!");
         }
@@ -71,8 +76,10 @@ namespace ETicaretAPI.Persistence.Services
                 UserLoginInfo userLoginInfo = new("FACEBOOK", Validation.Data.UserId, "FACEBOOK");
 
                 AppUser? user = await userManager.FindByLoginAsync(userLoginInfo.LoginProvider, userLoginInfo.ProviderKey);
-                await ConfirmOrCreateUser(userLoginInfo, facebookUserInfo?.Email, facebookUserInfo?.Name);
+                user = await ConfirmOrCreateUser(userLoginInfo, facebookUserInfo?.Email, facebookUserInfo?.Name);
                 Token token = tokenHandler.CreateAccessToken(tokenLifeTime);
+                token.RefreshToken = tokenHandler.CreateRefreshToken();
+                await userService.UpdateRefreshToken(token.RefreshToken, user, token.ExpirationDate, 60);
                 return token;
             }
             else
@@ -92,9 +99,11 @@ namespace ETicaretAPI.Persistence.Services
             Payload payload = await ValidateAsync(idToken, settings);
             UserLoginInfo userInfo = new("GOOGLE", payload.Subject, "GOOGLE");
 
-            await ConfirmOrCreateUser(userInfo, payload.Email, payload.GivenName);
+            AppUser user = await ConfirmOrCreateUser(userInfo, payload.Email, payload.GivenName);
 
             Token token = tokenHandler.CreateAccessToken(tokenLifeTime);
+            token.RefreshToken = tokenHandler.CreateRefreshToken();
+            await userService.UpdateRefreshToken(token.RefreshToken, user, token.ExpirationDate, 60);
             return token;
         }
 
@@ -113,6 +122,8 @@ namespace ETicaretAPI.Persistence.Services
             if (result.Succeeded)
             {
                 Token token = tokenHandler.CreateAccessToken(tokenLifeTimeSec);
+                token.RefreshToken = tokenHandler.CreateRefreshToken();
+                await userService.UpdateRefreshToken(token.RefreshToken, appUser, token.ExpirationDate, 60);
                 return token;
             }
             else

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +44,15 @@ namespace ETicaretAPI.Infrastructure.Services.Token
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             token.AccessToken = handler.WriteToken(jwtSecurityToken);
             return token;
+        }
+
+        public string CreateRefreshToken()
+        {
+            byte[] numbers = new byte[32];
+
+            using RandomNumberGenerator random = RandomNumberGenerator.Create();
+            random.GetBytes(numbers);
+            return Convert.ToBase64String(numbers);
         }
     }
 }
