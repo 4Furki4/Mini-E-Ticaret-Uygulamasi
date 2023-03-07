@@ -10,9 +10,11 @@ namespace ETicaretAPI.API.Controllers
     public class AuthController : ControllerBase
     {
         readonly IMediator mediator;
-        public AuthController(IMediator mediator)
+        readonly IConfiguration configuration;
+        public AuthController(IMediator mediator, IConfiguration configuration)
         {
             this.mediator = mediator;
+            this.configuration = configuration;
         }
         [HttpPost("[action]")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
@@ -38,6 +40,12 @@ namespace ETicaretAPI.API.Controllers
             FacebookLoginCommand facebookLoginCommand = new(facebookLoginVM);
             FacebookLoginCommandResponse response = await mediator.Send(facebookLoginCommand);
             return Ok(response);
+        }
+        [HttpGet]
+        public IActionResult getConntectionString()
+        {
+            
+            return Ok(configuration["ConnectionStrings:MySql"]);
         }
     }
 }
